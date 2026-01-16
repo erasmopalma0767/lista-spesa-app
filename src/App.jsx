@@ -6,6 +6,15 @@ import {
   signInWithPopup,
   signOut,
 } from 'firebase/auth';
+import { db } from './firebase';
+import {
+  collection,
+  addDoc,
+  onSnapshot,
+  doc,
+  updateDoc,
+  deleteDoc,
+} from 'firebase/firestore';
 
 const STORAGE_KEY_NOTES = 'lista-spesa-notes-v1';
 const STORAGE_KEY_RECIPES = 'lista-spesa-recipes-v1';
@@ -46,43 +55,41 @@ function App() {
 
   // --- NOTE / LISTE SPESA ---
 
-  const [notes, setNotes] = useState(() => {
-    const saved = window.localStorage.getItem(STORAGE_KEY_NOTES);
-    if (!saved) {
-      return [
-        {
-          id: 1,
-          title: 'Spesa casa',
-          items: [
-            { id: 1, name: 'Latte', done: false },
-            { id: 2, name: 'Pasta', done: false },
-          ],
-        },
-        {
-          id: 2,
-          title: 'Spesa ufficio',
-          items: [{ id: 3, name: 'Caffè', done: false }],
-        },
-      ];
-    }
-    try {
-      return JSON.parse(saved);
-    } catch {
-      return [];
-    }
-  });
-
-  const [selectedNoteId, setSelectedNoteId] = useState(1);
+  const [notes, setNotes] = useState([]);
+  const [loadingNotes, setLoadingNotes] = useState(true);
+  const [selectedNoteId, setSelectedNoteId] = useState(undefined);
   const [newItemName, setNewItemName] = useState('');
   const [newNoteTitle, setNewNoteTitle] = useState('');
 
+  // Carica note da Firestore
   useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEY_NOTES, JSON.stringify(notes));
-  }, [notes]);
+    if (!user) {
+      setNotes([]);
+      setLoadingNotes(false);
+      setSelectedNoteId(undefined);
+      return;
+    }
+
+    const colRef = collection(db, 'notes');
+    const unsubscribe = onSnapshot(colRef, (snapshot) => {
+      const data = snapshot.docs.map((d) => ({
+        id: d.id,
+        ...d.data(),
+      }));
+      setNotes(data);
+      setLoadingNotes(false);
+      // Seleziona la prima nota solo se non ce n'è una già selezionata
+      if (data.length > 0 && !selectedNoteId) {
+        setSelectedNoteId(data[0].id);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [user]);
 
   const selectedNote = notes.find((n) => n.id === selectedNoteId) || notes[0];
 
-  function handleAddItem(event) {
+  async function handleAddItem(event) {
     event.preventDefault();
     if (!selectedNote) return;
 
@@ -95,61 +102,68 @@ function App() {
       done: false,
     };
 
-    const updatedNotes = notes.map((note) =>
-      note.id === selectedNote.id
-        ? { ...note, items: [...note.items, newItem] }
-        : note
-    );
-
-    setNotes(updatedNotes);
-    setNewItemName('');
+    const updatedItems = [...(selectedNote.items || []), newItem];
+    
+    try {
+      const noteRef = doc(db, 'notes', selectedNote.id);
+      await updateDoc(noteRef, { items: updatedItems });
+      setNewItemName('');
+    } catch (error) {
+      console.error('Errore nel salvare l\'item:', error);
+      alert('Errore nel salvare l\'item');
+    }
   }
 
-  function toggleItemDone(itemId) {
+  async function toggleItemDone(itemId) {
     if (!selectedNote) return;
 
-    const updatedNotes = notes.map((note) => {
-      if (note.id !== selectedNote.id) return note;
-      return {
-        ...note,
-        items: note.items.map((item) =>
-          item.id === itemId ? { ...item, done: !item.done } : item
-        ),
-      };
-    });
+    const updatedItems = (selectedNote.items || []).map((item) =>
+      item.id === itemId ? { ...item, done: !item.done } : item
+    );
 
-    setNotes(updatedNotes);
+    try {
+      const noteRef = doc(db, 'notes', selectedNote.id);
+      await updateDoc(noteRef, { items: updatedItems });
+    } catch (error) {
+      console.error('Errore nell\'aggiornare l\'item:', error);
+      alert('Errore nell\'aggiornare l\'item');
+    }
   }
 
-  function clearCurrentNote() {
+  async function clearCurrentNote() {
     if (!selectedNote) return;
     if (!window.confirm('Vuoi svuotare questa nota?')) return;
 
-    const updatedNotes = notes.map((note) =>
-      note.id === selectedNote.id ? { ...note, items: [] } : note
-    );
-
-    setNotes(updatedNotes);
+    try {
+      const noteRef = doc(db, 'notes', selectedNote.id);
+      await updateDoc(noteRef, { items: [] });
+    } catch (error) {
+      console.error('Errore nello svuotare la nota:', error);
+      alert('Errore nello svuotare la nota');
+    }
   }
 
-  function handleAddNote(event) {
+  async function handleAddNote(event) {
     event.preventDefault();
     const trimmed = newNoteTitle.trim();
     if (!trimmed) return;
 
-    const newNote = {
-      id: Date.now(),
-      title: trimmed,
-      items: [],
-    };
+    try {
+      const newNote = {
+        title: trimmed,
+        items: [],
+      };
 
-    const updatedNotes = [...notes, newNote];
-    setNotes(updatedNotes);
-    setSelectedNoteId(newNote.id);
-    setNewNoteTitle('');
+      const docRef = await addDoc(collection(db, 'notes'), newNote);
+      setSelectedNoteId(docRef.id);
+      setNewNoteTitle('');
+    } catch (error) {
+      console.error('Errore nell\'aggiungere la nota:', error);
+      alert('Errore nell\'aggiungere la nota');
+    }
   }
 
-  function handleDeleteNote(noteId) {
+  async function handleDeleteNote(noteId) {
     if (
       !window.confirm(
         'Vuoi eliminare questa nota con tutto il suo contenuto?'
@@ -158,32 +172,27 @@ function App() {
       return;
     }
 
-    const updatedNotes = notes.filter((note) => note.id !== noteId);
-    setNotes(updatedNotes);
-
-    if (updatedNotes.length === 0) {
-      setSelectedNoteId(undefined);
-    } else {
-      if (noteId === selectedNoteId) {
-        setSelectedNoteId(updatedNotes[0].id);
+    try {
+      await deleteDoc(doc(db, 'notes', noteId));
+      
+      const updatedNotes = notes.filter((note) => note.id !== noteId);
+      if (updatedNotes.length === 0) {
+        setSelectedNoteId(undefined);
+      } else {
+        if (noteId === selectedNoteId) {
+          setSelectedNoteId(updatedNotes[0].id);
+        }
       }
+    } catch (error) {
+      console.error('Errore nell\'eliminare la nota:', error);
+      alert('Errore nell\'eliminare la nota');
     }
   }
 
   // --- RICETTE ---
 
-  const [recipes, setRecipes] = useState(() => {
-    const saved = window.localStorage.getItem(STORAGE_KEY_RECIPES);
-    if (!saved) {
-      return [];
-    }
-    try {
-      return JSON.parse(saved);
-    } catch {
-      return [];
-    }
-  });
-
+  const [recipes, setRecipes] = useState([]);
+  const [loadingRecipes, setLoadingRecipes] = useState(true);
   const [selectedRecipeId, setSelectedRecipeId] = useState(undefined);
   const [newRecipeTitle, setNewRecipeTitle] = useState('');
   const [newRecipeCategory, setNewRecipeCategory] = useState('');
@@ -194,9 +203,26 @@ function App() {
   const [selectedRecipeCategoryFilter, setSelectedRecipeCategoryFilter] =
     useState('Tutte'); // 'Tutte' o una voce di CATEGORIES
 
+  // Carica ricette da Firestore
   useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEY_RECIPES, JSON.stringify(recipes));
-  }, [recipes]);
+    if (!user) {
+      setRecipes([]);
+      setLoadingRecipes(false);
+      return;
+    }
+
+    const colRef = collection(db, 'recipes');
+    const unsubscribe = onSnapshot(colRef, (snapshot) => {
+      const data = snapshot.docs.map((d) => ({
+        id: d.id,
+        ...d.data(),
+      }));
+      setRecipes(data);
+      setLoadingRecipes(false);
+    });
+
+    return () => unsubscribe();
+  }, [user]);
 
   const selectedRecipe =
     recipes.find((r) => r.id === selectedRecipeId) || recipes[0];
@@ -213,7 +239,7 @@ function App() {
     return CATEGORIES.includes(raw) ? raw : 'Altro';
   }
 
-  function handleAddRecipe(event) {
+  async function handleAddRecipe(event) {
     event.preventDefault();
     if (isEditingRecipe) {
       handleSaveRecipeEdit();
@@ -225,22 +251,25 @@ function App() {
 
       if (!title || !content) return;
 
-      const newRecipe = {
-        id: Date.now(),
-        title,
-        category,
-        content,
-        url,
-        favorite: false,
-      };
+      try {
+        const newRecipe = {
+          title,
+          category,
+          content,
+          url,
+          favorite: false,
+        };
 
-      const updated = [...recipes, newRecipe];
-      setRecipes(updated);
-      setSelectedRecipeId(newRecipe.id);
-      setNewRecipeTitle('');
-      setNewRecipeCategory('');
-      setNewRecipeContent('');
-      setNewRecipeUrl('');
+        const docRef = await addDoc(collection(db, 'recipes'), newRecipe);
+        setSelectedRecipeId(docRef.id);
+        setNewRecipeTitle('');
+        setNewRecipeCategory('');
+        setNewRecipeContent('');
+        setNewRecipeUrl('');
+      } catch (error) {
+        console.error('Errore nell\'aggiungere la ricetta:', error);
+        alert('Errore nell\'aggiungere la ricetta');
+      }
     }
   }
 
@@ -254,7 +283,7 @@ function App() {
     setIsEditingRecipe(true);
   }
 
-  function handleSaveRecipeEdit() {
+  async function handleSaveRecipeEdit() {
     if (!selectedRecipe) return;
 
     const title = newRecipeTitle.trim();
@@ -264,46 +293,64 @@ function App() {
 
     if (!title || !content) return;
 
-    const updated = recipes.map((r) =>
-      r.id === selectedRecipe.id
-        ? { ...r, title, category, content, url }
-        : r
-    );
-
-    setRecipes(updated);
-    setIsEditingRecipe(false);
-    setNewRecipeTitle('');
-    setNewRecipeCategory('');
-    setNewRecipeContent('');
-    setNewRecipeUrl('');
-  }
-
-  function handleDeleteRecipe(recipeId) {
-    if (!window.confirm('Vuoi eliminare questa ricetta?')) return;
-
-    const updated = recipes.filter((r) => r.id !== recipeId);
-    setRecipes(updated);
-
-    if (updated.length === 0) {
-      setSelectedRecipeId(undefined);
-    } else if (recipeId === selectedRecipeId) {
-      setSelectedRecipeId(updated[0].id);
-    }
-
-    if (recipeId === selectedRecipeId) {
+    try {
+      const recipeRef = doc(db, 'recipes', selectedRecipe.id);
+      await updateDoc(recipeRef, {
+        title,
+        category,
+        content,
+        url,
+      });
       setIsEditingRecipe(false);
       setNewRecipeTitle('');
       setNewRecipeCategory('');
       setNewRecipeContent('');
       setNewRecipeUrl('');
+    } catch (error) {
+      console.error('Errore nel salvare le modifiche:', error);
+      alert('Errore nel salvare le modifiche');
     }
   }
 
-  function toggleFavorite(recipeId) {
-    const updated = recipes.map((r) =>
-      r.id === recipeId ? { ...r, favorite: !r.favorite } : r
-    );
-    setRecipes(updated);
+  async function handleDeleteRecipe(recipeId) {
+    if (!window.confirm('Vuoi eliminare questa ricetta?')) return;
+
+    try {
+      await deleteDoc(doc(db, 'recipes', recipeId));
+
+      const updated = recipes.filter((r) => r.id !== recipeId);
+      if (updated.length === 0) {
+        setSelectedRecipeId(undefined);
+      } else if (recipeId === selectedRecipeId) {
+        setSelectedRecipeId(updated[0].id);
+      }
+
+      if (recipeId === selectedRecipeId) {
+        setIsEditingRecipe(false);
+        setNewRecipeTitle('');
+        setNewRecipeCategory('');
+        setNewRecipeContent('');
+        setNewRecipeUrl('');
+      }
+    } catch (error) {
+      console.error('Errore nell\'eliminare la ricetta:', error);
+      alert('Errore nell\'eliminare la ricetta');
+    }
+  }
+
+  async function toggleFavorite(recipeId) {
+    const recipe = recipes.find((r) => r.id === recipeId);
+    if (!recipe) return;
+
+    try {
+      const recipeRef = doc(db, 'recipes', recipeId);
+      await updateDoc(recipeRef, {
+        favorite: !recipe.favorite,
+      });
+    } catch (error) {
+      console.error('Errore nell\'aggiornare il preferito:', error);
+      alert('Errore nell\'aggiornare il preferito');
+    }
   }
 
   // --- UI ---
