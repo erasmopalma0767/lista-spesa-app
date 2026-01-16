@@ -224,15 +224,40 @@ function App() {
     return () => unsubscribe();
   }, [user]);
 
-  const selectedRecipe =
-    recipes.find((r) => r.id === selectedRecipeId) || recipes[0];
-
   const filteredRecipes =
     selectedRecipeCategoryFilter === 'Tutte'
       ? recipes
       : recipes.filter(
           (r) => (r.category || 'Altro') === selectedRecipeCategoryFilter
         );
+
+  const selectedRecipe = filteredRecipes.find((r) => r.id === selectedRecipeId);
+
+  // Quando cambia il filtro, verifica se la ricetta selezionata è ancora visibile
+  useEffect(() => {
+    if (selectedRecipeId) {
+      const isStillVisible = filteredRecipes.some((r) => r.id === selectedRecipeId);
+      if (!isStillVisible) {
+        // La ricetta selezionata non è più nel filtro corrente
+        if (filteredRecipes.length > 0) {
+          // Seleziona la prima ricetta disponibile nel nuovo filtro
+          setSelectedRecipeId(filteredRecipes[0].id);
+        } else {
+          // Nessuna ricetta nel filtro, deseleziona
+          setSelectedRecipeId(undefined);
+        }
+        // Reset del form di modifica
+        setIsEditingRecipe(false);
+        setNewRecipeTitle('');
+        setNewRecipeCategory('');
+        setNewRecipeContent('');
+        setNewRecipeUrl('');
+      }
+    } else if (filteredRecipes.length > 0) {
+      // Se non c'è una ricetta selezionata ma ci sono ricette nel filtro, seleziona la prima
+      setSelectedRecipeId(filteredRecipes[0].id);
+    }
+  }, [selectedRecipeCategoryFilter, filteredRecipes]);
 
   function normalizeCategory(raw) {
     if (!raw) return 'Altro';
