@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generatore Icone PWA</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 { color: #333; }
+    button {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 10px 5px;
+    }
+    button:hover { background: #5568d3; }
+    canvas { display: none; }
+    .instructions {
+      background: #e8f4f8;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 Generatore Icone PWA</h1>
+    <div class="instructions">
+      <p><strong>Come usare:</strong></p>
+      <ol>
+        <li>Clicca sui pulsanti qui sotto per generare le icone</li>
+        <li>Le icone verranno scaricate automaticamente</li>
+        <li>Copia i file nella cartella <code>public/</code></li>
+      </ol>
+    </div>
+    
+    <canvas id="canvas"></canvas>
+    
+    <div>
+      <button onclick="generateIcon(192)">Genera icon-192.png</button>
+      <button onclick="generateIcon(512)">Genera icon-512.png</button>
+    </div>
+    
+    <div id="status" style="margin-top: 20px; color: #666;"></div>
+  </div>
+
+  <script>
+    // Carica l'SVG
+    async function loadSVG() {
+      try {
+        const response = await fetch('/icon.svg');
+        const svgText = await response.text();
+        return svgText;
+      } catch (error) {
+        // Se non trova il file, usa un SVG inline
+        return document.querySelector('svg').outerHTML || `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+            <defs>
+              <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#764ba2;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#4facfe;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <rect width="512" height="512" rx="100" fill="url(#bgGradient)"/>
+            <g fill="white" opacity="0.9">
+              <rect x="80" y="140" width="200" height="16" rx="8"/>
+              <circle cx="340" cy="148" r="20"/>
+              <rect x="80" y="200" width="240" height="16" rx="8"/>
+              <circle cx="380" cy="208" r="20"/>
+              <rect x="80" y="260" width="180" height="16" rx="8"/>
+              <circle cx="320" cy="268" r="20"/>
+            </g>
+            <g transform="translate(320, 80)">
+              <ellipse cx="80" cy="100" rx="50" ry="8" fill="white" opacity="0.9"/>
+              <path d="M 30 100 L 40 140 L 120 140 L 130 100 Z" fill="white" opacity="0.9"/>
+              <circle cx="50" cy="60" r="8" fill="white" opacity="0.7"/>
+              <circle cx="80" cy="50" r="10" fill="white" opacity="0.7"/>
+              <circle cx="110" cy="60" r="8" fill="white" opacity="0.7"/>
+            </g>
+            <path d="M 420 380 L 435 415 L 475 420 L 445 445 L 450 485 L 420 465 L 390 485 L 395 445 L 365 420 L 405 415 Z" 
+                  fill="white" opacity="0.8"/>
+          </svg>
+        `;
+      }
+    }
+
+    async function generateIcon(size) {
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = size;
+      canvas.height = size;
+      
+      const status = document.getElementById('status');
+      status.textContent = 'Generazione in corso...';
+      
+      try {
+        const svgText = await loadSVG();
+        const blob = new Blob([svgText], { type: 'image/svg+xml' });
+        const url = URL.createObjectURL(blob);
+        
+        const img = new Image();
+        img.onload = function() {
+          ctx.clearRect(0, 0, size, size);
+          ctx.drawImage(img, 0, 0, size, size);
+          
+          canvas.toBlob(function(blob) {
+            const downloadUrl = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = downloadUrl;
+            a.download = `icon-${size}.png`;
+            a.click();
+            URL.revokeObjectURL(downloadUrl);
+            URL.revokeObjectURL(url);
+            status.textContent = `✓ icon-${size}.png generata e scaricata!`;
+          }, 'image/png');
+        };
+        
+        img.onerror = function() {
+          status.textContent = 'Errore: impossibile caricare l\'SVG. Apri questa pagina tramite un server web (es: http://localhost:5173/generate-icons.html)';
+        };
+        
+        img.src = url;
+      } catch (error) {
+        status.textContent = 'Errore: ' + error.message;
+      }
+    }
+  </script>
+</body>
+</html>
