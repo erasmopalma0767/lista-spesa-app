@@ -205,8 +205,7 @@ function App() {
     selectedRecipeCategoryFilter === 'Tutte'
       ? recipes
       : recipes.filter(
-          (r) =>
-            (r.category || 'Altro') === selectedRecipeCategoryFilter
+          (r) => (r.category || 'Altro') === selectedRecipeCategoryFilter
         );
 
   function normalizeCategory(raw) {
@@ -310,37 +309,20 @@ function App() {
   // --- UI ---
 
   return (
-    <div
-      style={{
-        height: '100vh',
-        fontFamily: 'system-ui',
-        display: 'flex',
-        flexDirection: 'column',
-      }}
-    >
+    <div className="app-root">
       {/* Barra superiore di navigazione */}
-      <header
-        style={{
-          padding: '0.5rem 1rem',
-          borderBottom: '1px solid #ddd',
-          display: 'flex',
-          gap: '0.5rem',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
+      <header className="app-header">
         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
           <strong style={{ marginRight: '1rem' }}>Casa • Liste & Ricette</strong>
 
           <button
             type="button"
             onClick={() => setActiveSection('lists')}
-            style={{
-              padding: '0.3rem 0.8rem',
-              borderRadius: '4px',
-              border: '1px solid #ccc',
-              backgroundColor: activeSection === 'lists' ? '#eef' : '#fff',
-            }}
+            className={
+              activeSection === 'lists'
+                ? 'header-tab header-tab--active'
+                : 'header-tab'
+            }
           >
             Liste spesa
           </button>
@@ -348,12 +330,11 @@ function App() {
           <button
             type="button"
             onClick={() => setActiveSection('recipes')}
-            style={{
-              padding: '0.3rem 0.8rem',
-              borderRadius: '4px',
-              border: '1px solid #ccc',
-              backgroundColor: activeSection === 'recipes' ? '#eef' : '#fff',
-            }}
+            className={
+              activeSection === 'recipes'
+                ? 'header-tab header-tab--active'
+                : 'header-tab'
+            }
           >
             Ricette
           </button>
@@ -378,9 +359,9 @@ function App() {
       </header>
 
       {/* Contenuto principale */}
-      <main style={{ flex: 1, display: 'flex' }}>
+      <main className="app-main">
         {!user ? (
-          <div style={{ padding: '2rem' }}>
+          <div className="content">
             <h2>Accedi per usare liste e ricette</h2>
             <p>Clicca su "Entra con Google" in alto a destra.</p>
           </div>
@@ -388,13 +369,7 @@ function App() {
           // --------- SEZIONE LISTE SPESA ----------
           <>
             {/* Colonna sinistra: elenco note */}
-            <div
-              style={{
-                width: '260px',
-                borderRight: '1px solid #ddd',
-                padding: '1rem',
-              }}
-            >
+            <div className="sidebar">
               <h2>Note</h2>
 
               <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
@@ -456,7 +431,7 @@ function App() {
             </div>
 
             {/* Colonna destra: dettagli nota selezionata */}
-            <div style={{ flex: 1, padding: '1rem' }}>
+            <div className="content">
               {selectedNote ? (
                 <>
                   <h1>{selectedNote.title}</h1>
@@ -522,13 +497,7 @@ function App() {
           // --------- SEZIONE RICETTE ----------
           <>
             {/* Colonna sinistra: elenco ricette */}
-            <div
-              style={{
-                width: '320px',
-                borderRight: '1px solid #ddd',
-                padding: '1rem',
-              }}
-            >
+            <div className="sidebar-recipes">
               <h2>Ricette</h2>
 
               {/* Badge categorie */}
@@ -703,7 +672,7 @@ function App() {
             </div>
 
             {/* Colonna destra: dettaglio ricetta */}
-            <div style={{ flex: 1, padding: '1rem', whiteSpace: 'pre-wrap' }}>
+            <div className="content" style={{ whiteSpace: 'pre-wrap' }}>
               {selectedRecipe ? (
                 <>
                   <div
