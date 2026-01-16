@@ -410,7 +410,7 @@ function App() {
         {!user ? (
           <div className="content">
             <h2>Accedi per usare liste e ricette</h2>
-            <p>Clicca su "Entra con Google" in alto a destra.</p>
+            <p style={{ color: 'var(--text-secondary)' }}>Clicca su "Entra con Google" in alto a destra.</p>
           </div>
         ) : activeSection === 'lists' ? (
           // --------- SEZIONE LISTE SPESA ----------
@@ -430,12 +430,13 @@ function App() {
                       padding: '0.5rem',
                       marginBottom: '0.25rem',
                       backgroundColor:
-                        note.id === selectedNote?.id ? '#eef' : 'transparent',
+                        note.id === selectedNote?.id ? 'rgba(59, 130, 246, 0.1)' : 'transparent',
+                      borderRadius: '6px',
                     }}
                   >
                     <span
                       onClick={() => setSelectedNoteId(note.id)}
-                      style={{ cursor: 'pointer', flex: 1 }}
+                      style={{ cursor: 'pointer', flex: 1, color: 'var(--text-primary)' }}
                     >
                       {note.title}
                       {note.items.length > 0 && ` (${note.items.length})`}
@@ -504,18 +505,31 @@ function App() {
                   </form>
 
                   {selectedNote.items.length === 0 ? (
-                    <p>Nessun elemento in questa nota.</p>
+                    <p style={{ color: 'var(--text-secondary)' }}>Nessun elemento in questa nota.</p>
                   ) : (
                     <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
                       {selectedNote.items.map((item) => (
                         <li
                           key={item.id}
                           style={{
-                            marginBottom: '0.25rem',
+                            marginBottom: '0.5rem',
+                            padding: '0.5rem',
                             cursor: 'pointer',
                             textDecoration: item.done
                               ? 'line-through'
                               : 'none',
+                            color: item.done ? 'var(--text-light)' : 'var(--text-primary)',
+                            backgroundColor: 'rgba(59, 130, 246, 0.05)',
+                            borderRadius: '6px',
+                            transition: 'all 0.2s ease',
+                          }}
+                          onMouseEnter={(e) => {
+                            if (!item.done) {
+                              e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.1)';
+                            }
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.05)';
                           }}
                           onClick={() => toggleItemDone(item.id)}
                         >
@@ -536,7 +550,7 @@ function App() {
                   </button>
                 </>
               ) : (
-                <p>Nessuna nota selezionata.</p>
+                <p style={{ color: 'var(--text-secondary)' }}>Nessuna nota selezionata.</p>
               )}
             </div>
           </>
@@ -607,7 +621,8 @@ function App() {
                       padding: '0.5rem',
                       marginBottom: '0.25rem',
                       backgroundColor:
-                        recipe.id === selectedRecipe?.id ? '#eef' : 'transparent',
+                        recipe.id === selectedRecipe?.id ? 'rgba(59, 130, 246, 0.1)' : 'transparent',
+                      borderRadius: '6px',
                     }}
                   >
                     <span
@@ -619,7 +634,7 @@ function App() {
                         setNewRecipeContent('');
                         setNewRecipeUrl('');
                       }}
-                      style={{ cursor: 'pointer', flex: 1 }}
+                      style={{ cursor: 'pointer', flex: 1, color: 'var(--text-primary)' }}
                     >
                       {recipe.favorite ? '★ ' : ''}
                       {recipe.title}
@@ -748,12 +763,12 @@ function App() {
                   </div>
 
                   {selectedRecipe.category && (
-                    <p>
+                    <p style={{ color: 'var(--text-secondary)' }}>
                       <strong>Categoria:</strong> {selectedRecipe.category}
                     </p>
                   )}
                   {selectedRecipe.url && (
-                    <p>
+                    <p style={{ color: 'var(--text-secondary)' }}>
                       <strong>Link originale:</strong>{' '}
                       <a
                         href={selectedRecipe.url}
@@ -765,10 +780,10 @@ function App() {
                     </p>
                   )}
                   <h3>Dettagli</h3>
-                  <p>{selectedRecipe.content}</p>
+                  <p style={{ color: 'var(--text-secondary)', whiteSpace: 'pre-wrap' }}>{selectedRecipe.content}</p>
                 </>
               ) : (
-                <p>
+                <p style={{ color: 'var(--text-secondary)' }}>
                   Nessuna ricetta selezionata. Aggiungine una dalla colonna a
                   sinistra.
                 </p>
