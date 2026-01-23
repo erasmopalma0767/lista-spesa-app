@@ -5,7 +5,8 @@
   --primary-200: #c7d2fe;
   --primary-300: #a5b4fc;
   --primary-400: #818cf8;
-  --primary-500: #6366f1; /* Main Brand Color */
+  --primary-500: #6366f1;
+  /* Main Brand Color */
   --primary-600: #4f46e5;
   --primary-700: #4338ca;
   --primary-800: #3730a3;
@@ -28,7 +29,7 @@
   --color-bg-app: var(--slate-50);
   --color-bg-surface: #ffffff;
   --color-bg-surface-hover: var(--slate-50);
-  
+
   --color-text-primary: var(--slate-900);
   --color-text-secondary: var(--slate-500);
   --color-text-tertiary: var(--slate-400);
@@ -49,7 +50,7 @@
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-xl: 16px;
-  
+
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -90,9 +91,9 @@
 
 body {
   margin: 0;
-  display: flex;
   min-width: 320px;
   min-height: 100vh;
+  min-height: 100dvh;
   background-color: var(--color-bg-app);
 }
 
@@ -100,7 +101,12 @@ button {
   font-family: inherit;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   font-weight: 600;
   color: var(--color-text-primary);

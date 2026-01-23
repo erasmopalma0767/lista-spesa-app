@@ -2,7 +2,9 @@
 .app-root {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
   background-color: var(--color-bg-app);
   color: var(--color-text-primary);
 }
