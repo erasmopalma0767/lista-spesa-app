@@ -16,6 +16,7 @@ import {
   deleteDoc,
 } from 'firebase/firestore';
 import Home from './components/Home';
+import ListeSection from './components/ListeSection';
 import './App.css';
 
 const STORAGE_KEY_NOTES = 'lista-spesa-notes-v1';
@@ -426,116 +427,11 @@ function App() {
             onNavigate={handleNavigate}
           />
         ) : activeSection === 'lists' ? (
-          // LISTE SPESA
-          <>
-            {/* Sidebar (List View) */}
-            <div className={`sidebar ${sidebarClass}`}>
-              <div className="sidebar-header">
-                <h2>Note</h2>
-                <form onSubmit={handleAddNote}>
-                  <div className="input-group">
-                    <input
-                      type="text"
-                      placeholder="Nuova nota..."
-                      value={newNoteTitle}
-                      onChange={(e) => setNewNoteTitle(e.target.value)}
-                    />
-                    <button type="submit" className="btn btn-primary" title="Aggiungi">
-                      +
-                    </button>
-                  </div>
-                </form>
-              </div>
-
-              <div className="sidebar-content">
-                <ul className="item-list">
-                  {notes.map((note) => (
-                    <li
-                      key={note.id}
-                      className={`list-item ${note.id === selectedNote?.id ? 'selected' : ''}`}
-                    >
-                      <span
-                        onClick={() => handleSelectNote(note.id)}
-                        style={{ flex: 1 }}
-                      >
-                        {note.title}
-                        {note.items.length > 0 && ` (${note.items.length})`}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={(e) => { e.stopPropagation(); handleDeleteNote(note.id); }}
-                        className="btn-ghost"
-                      >
-                        ✕
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Content (Detail View) */}
-            <div className={`content-area ${contentClass}`}>
-              {selectedNote ? (
-                <>
-                  <div style={{ marginBottom: '1.5rem' }}>
-                    <h1>{selectedNote.title}</h1>
-                  </div>
-
-                  <form onSubmit={handleAddItem} style={{ marginBottom: '1.5rem' }}>
-                    <div className="input-group">
-                      <input
-                        type="text"
-                        placeholder="Aggiungi..."
-                        value={newItemName}
-                        onChange={(event) => setNewItemName(event.target.value)}
-                      />
-                      <button type="submit" className="btn btn-primary">Aggiungi</button>
-                    </div>
-                  </form>
-
-                  {selectedNote.items.length === 0 ? (
-                    <p style={{ color: 'var(--color-text-tertiary)', textAlign: 'center', marginTop: '2rem' }}>
-                      Nessun elemento.
-                    </p>
-                  ) : (
-                    <ul className="item-list">
-                      {selectedNote.items.map((item) => (
-                        <li
-                          key={item.id}
-                          className="list-item"
-                          style={{
-                            textDecoration: item.done ? 'line-through' : 'none',
-                            color: item.done ? 'var(--color-text-tertiary)' : 'var(--color-text-primary)'
-                          }}
-                          onClick={() => toggleItemDone(item.id)}
-                        >
-                          <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                            {item.done ? '✅' : '⚪'} {item.name}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-
-                  <div style={{ marginTop: 'auto', paddingTop: '1rem', borderTop: '1px solid var(--color-border)' }}>
-                    <button
-                      type="button"
-                      className="btn btn-secondary"
-                      onClick={clearCurrentNote}
-                      disabled={selectedNote.items.length === 0}
-                    >
-                      Svuota nota
-                    </button>
-                  </div>
-                </>
-              ) : (
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--color-text-tertiary)' }}>
-                  <p>Seleziona una nota.</p>
-                </div>
-              )}
-            </div>
-          </>
+          <ListeSection
+            notes={notes}
+            selectedNoteId={selectedNoteId}
+            onSelectNote={setSelectedNoteId}
+          />
         ) : activeSection === 'recipes' ? (
           // RICETTE
           <>
