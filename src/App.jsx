@@ -15,6 +15,7 @@ import {
   updateDoc,
   deleteDoc,
 } from 'firebase/firestore';
+import Home from './components/Home';
 import './App.css';
 
 const STORAGE_KEY_NOTES = 'lista-spesa-notes-v1';
@@ -23,7 +24,7 @@ const STORAGE_KEY_RECIPES = 'lista-spesa-recipes-v1';
 const CATEGORIES = ['Antipasti', 'Primi', 'Secondi', 'Dolci', 'Altro'];
 
 function App() {
-  const [activeSection, setActiveSection] = useState('lists'); // 'lists' | 'recipes'
+  const [activeSection, setActiveSection] = useState('home'); // 'home' | 'lists' | 'recipes' | 'cosa-cucino' | 'preferiti' | 'leggero' | 'aggiungi'
   const [user, setUser] = useState(null);
 
   // Mobile UI State
@@ -341,8 +342,15 @@ function App() {
 
   function handleSwitchSection(section) {
     setActiveSection(section);
-    setShowMobileDetail(false); // Reset to list view when switching main tabs
+    setShowMobileDetail(false);
   }
+
+  function handleNavigate(section) {
+    setActiveSection(section);
+    setShowMobileDetail(false);
+  }
+
+  const isInSection = activeSection !== 'home';
 
   // Determine visibility classes for mobile
   const sidebarClass = showMobileDetail ? 'view-hidden' : '';
@@ -353,8 +361,11 @@ function App() {
       {/* HEADER */}
       <header className="app-header">
         <div className="app-brand">
-          {showMobileDetail && (
-            <button className="mobile-back-btn" onClick={handleMobileBack}>
+          {(showMobileDetail || isInSection) && (
+            <button
+              className="mobile-back-btn"
+              onClick={showMobileDetail ? handleMobileBack : () => handleNavigate('home')}
+            >
               ←
             </button>
           )}
@@ -362,18 +373,10 @@ function App() {
         </div>
 
         <div className="nav-tabs">
-          <button
-            type="button"
-            onClick={() => handleSwitchSection('lists')}
-            className={`nav-tab ${activeSection === 'lists' ? 'active' : ''}`}
-          >
+          <button type="button" onClick={() => handleSwitchSection('lists')} className={`nav-tab ${activeSection === 'lists' ? 'active' : ''}`}>
             Liste spesa
           </button>
-          <button
-            type="button"
-            onClick={() => handleSwitchSection('recipes')}
-            className={`nav-tab ${activeSection === 'recipes' ? 'active' : ''}`}
-          >
+          <button type="button" onClick={() => handleSwitchSection('recipes')} className={`nav-tab ${activeSection === 'recipes' ? 'active' : ''}`}>
             Ricette
           </button>
         </div>
@@ -395,7 +398,6 @@ function App() {
           )}
         </div>
 
-        {/* Mobile Logout (Icon only or simplified) */}
         {!user && (
           <button type="button" className="btn btn-primary btn-sm mobile-nav" style={{ position: 'static', margin: 0, height: 'auto', padding: '0.4rem' }} onClick={handleLoginWithGoogle}>
             Log In
@@ -406,10 +408,23 @@ function App() {
       {/* MAIN CONTENT */}
       <main className="app-main">
         {!user ? (
-          <div className="content-area" style={{ position: 'static', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
-            <h2>Accedi per iniziare</h2>
-            <p className="text-secondary">Usa il pulsante in alto a destra.</p>
+          <div className="login-screen">
+            <div className="login-box">
+              <div className="login-logo">🏠</div>
+              <h2>Casa • Liste & Ricette</h2>
+              <p>Accedi per gestire la spesa e le ricette di famiglia</p>
+              <button type="button" className="btn btn-primary btn-login" onClick={handleLoginWithGoogle}>
+                Entra con Google
+              </button>
+            </div>
           </div>
+        ) : activeSection === 'home' ? (
+          <Home
+            user={user}
+            notes={notes}
+            recipes={recipes}
+            onNavigate={handleNavigate}
+          />
         ) : activeSection === 'lists' ? (
           // LISTE SPESA
           <>
@@ -521,7 +536,7 @@ function App() {
               )}
             </div>
           </>
-        ) : (
+        ) : activeSection === 'recipes' ? (
           // RICETTE
           <>
             <div className={`sidebar-recipes ${sidebarClass}`}>
@@ -702,35 +717,74 @@ function App() {
               )}
             </div>
           </>
-        )}
+        ) : activeSection === 'cosa-cucino' || activeSection === 'preferiti' || activeSection === 'leggero' || activeSection === 'aggiungi' ? (
+          <div className="placeholder-section">
+            <div className="placeholder-box">
+              <p className="placeholder-emoji">
+                {activeSection === 'cosa-cucino' && '🍳'}
+                {activeSection === 'preferiti' && '⭐'}
+                {activeSection === 'leggero' && '🥗'}
+                {activeSection === 'aggiungi' && '✍️'}
+              </p>
+              <h2>
+                {activeSection === 'cosa-cucino' && 'Cosa cucino?'}
+                {activeSection === 'preferiti' && 'Preferiti'}
+                {activeSection === 'leggero' && 'Leggero'}
+                {activeSection === 'aggiungi' && 'Aggiungi ricetta'}
+              </h2>
+              <p>In arrivo nella prossima versione</p>
+              <button className="btn btn-secondary" onClick={() => handleNavigate('home')}>
+                ← Torna alla home
+              </button>
+            </div>
+          </div>
+        ) : null}
       </main>
 
       {/* MOBILE BOTTOM NAV */}
       <div className="mobile-nav">
         <button
+          className={`mobile-nav-item ${activeSection === 'home' ? 'active' : ''}`}
+          onClick={() => handleNavigate('home')}
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>Home</span>
+        </button>
+
+        <button
           className={`mobile-nav-item ${activeSection === 'lists' ? 'active' : ''}`}
           onClick={() => handleSwitchSection('lists')}
         >
-          <span style={{ fontSize: '1.2rem' }}>📝</span>
-          <span>Liste</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+          <span>Spesa</span>
         </button>
 
         <button
           className={`mobile-nav-item ${activeSection === 'recipes' ? 'active' : ''}`}
           onClick={() => handleSwitchSection('recipes')}
         >
-          <span style={{ fontSize: '1.2rem' }}>🍳</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+          </svg>
           <span>Ricette</span>
         </button>
 
         {user ? (
           <button className="mobile-nav-item" onClick={handleLogout}>
-            <span style={{ fontSize: '1.2rem' }}>🚪</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
             <span>Esci</span>
           </button>
         ) : (
           <button className="mobile-nav-item" onClick={handleLoginWithGoogle}>
-            <span style={{ fontSize: '1.2rem' }}>👤</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
             <span>Login</span>
           </button>
         )}
