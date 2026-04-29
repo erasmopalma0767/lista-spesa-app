@@ -11,17 +11,14 @@ export default function ListeSection({ notes, selectedNoteId, onSelectNote }) {
   const [newNoteTitle, setNewNoteTitle] = useState('');
   const [showAddNote, setShowAddNote] = useState(false);
   const [newItemName, setNewItemName] = useState('');
-  const [fabOpen, setFabOpen] = useState(false);
   const [suggestions, setSuggestions] = useState(null);
   const [selectedSuggestions, setSelectedSuggestions] = useState([]);
-  const fabInputRef = useRef(null);
-  const noteTabsRef = useRef(null);
+  const addItemInputRef = useRef(null);
 
   const selectedNote = notes.find(n => n.id === selectedNoteId) || notes[0];
   const todoItems = (selectedNote?.items || []).filter(i => !i.done);
   const doneItems = (selectedNote?.items || []).filter(i => i.done);
 
-  // Carica storico acquisti
   useEffect(() => {
     async function loadHistory() {
       try {
@@ -35,16 +32,10 @@ export default function ListeSection({ notes, selectedNoteId, onSelectNote }) {
           setSuggestions(latest);
           setSelectedSuggestions(latest.items.map(i => i.name));
         }
-      } catch (e) {
-        console.error(e);
-      }
+      } catch (e) { console.error(e); }
     }
     loadHistory();
   }, []);
-
-  useEffect(() => {
-    if (fabOpen && fabInputRef.current) fabInputRef.current.focus();
-  }, [fabOpen]);
 
   async function handleAddNote(e) {
     e.preventDefault();
@@ -75,6 +66,7 @@ export default function ListeSection({ notes, selectedNoteId, onSelectNote }) {
         items: [...(selectedNote.items || []), newItem],
       });
       setNewItemName('');
+      addItemInputRef.current?.focus();
     } catch (err) { console.error(err); }
   }
 
@@ -144,7 +136,7 @@ export default function ListeSection({ notes, selectedNoteId, onSelectNote }) {
 
       {/* TABS NOTE */}
       <div className="note-tabs-wrap">
-        <div className="note-tabs" ref={noteTabsRef}>
+        <div className="note-tabs">
           {notes.map(note => (
             <button
               key={note.id}
@@ -160,6 +152,7 @@ export default function ListeSection({ notes, selectedNoteId, onSelectNote }) {
               <span className="note-tab-delete" onClick={e => handleDeleteNote(note.id, e)}>×</span>
             </button>
           ))}
+
           {showAddNote ? (
             <form onSubmit={handleAddNote} className="note-tab-form">
               <input
@@ -171,7 +164,9 @@ export default function ListeSection({ notes, selectedNoteId, onSelectNote }) {
               />
             </form>
           ) : (
-            <button className="note-tab note-tab-add" onClick={() => setShowAddNote(true)}>+</button>
+            <button className="note-tab-new" onClick={() => setShowAddNote(true)}>
+              + Lista
+            </button>
           )}
         </div>
       </div>
@@ -207,7 +202,7 @@ export default function ListeSection({ notes, selectedNoteId, onSelectNote }) {
         {!selectedNote ? (
           <div className="empty-state"><p>Crea una lista per iniziare</p></div>
         ) : selectedNote.items.length === 0 ? (
-          <div className="empty-state"><p>Lista vuota — tocca + per aggiungere</p></div>
+          <div className="empty-state"><p>Lista vuota — inizia ad aggiungere prodotti</p></div>
         ) : (
           <ul className="items-list">
             {todoItems.map(item => (
@@ -229,41 +224,33 @@ export default function ListeSection({ notes, selectedNoteId, onSelectNote }) {
                 <button className="item-delete" onClick={() => deleteItem(item.id)}>×</button>
               </li>
             ))}
+
+            {doneItems.length > 0 && (
+              <li className="item-row-clear">
+                <button className="btn-clear" onClick={handleClearNote}>
+                  Svuota lista · salva {doneItems.length} acquisti
+                </button>
+              </li>
+            )}
           </ul>
         )}
       </div>
 
-      {/* FOOTER SVUOTA */}
-      {selectedNote && selectedNote.items.length > 0 && (
-        <div className="liste-footer">
-          <button className="btn-clear" onClick={handleClearNote}>
-            Svuota lista
-            {doneItems.length > 0 && ` (salva ${doneItems.length} acquisti)`}
-          </button>
-        </div>
-      )}
-
-      {/* FAB */}
+      {/* BARRA AGGIUNGI FISSA */}
       {selectedNote && (
-        <div className="fab-wrap">
-          {fabOpen && (
-            <form className="fab-input-bar" onSubmit={handleAddItem}>
-              <input
-                ref={fabInputRef}
-                value={newItemName}
-                onChange={e => setNewItemName(e.target.value)}
-                placeholder="Cosa aggiungi?"
-              />
-              <button type="submit" className="fab-input-send">+</button>
-            </form>
-          )}
-          <button
-            className={`fab-btn ${fabOpen ? 'open' : ''}`}
-            onClick={() => setFabOpen(v => !v)}
-          >
-            {fabOpen ? '×' : '+'}
+        <form className="add-bar" onSubmit={handleAddItem}>
+          <input
+            ref={addItemInputRef}
+            value={newItemName}
+            onChange={e => setNewItemName(e.target.value)}
+            placeholder="Aggiungi prodotto..."
+          />
+          <button type="submit" className="add-bar-btn" disabled={!newItemName.trim()}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
           </button>
-        </div>
+        </form>
       )}
 
     </div>
