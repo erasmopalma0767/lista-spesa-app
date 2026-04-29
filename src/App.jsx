@@ -82,9 +82,7 @@ function App() {
       }));
       setNotes(data);
       setLoadingNotes(false);
-      if (data.length > 0 && !selectedNoteId) {
-        setSelectedNoteId(data[0].id);
-      }
+      setSelectedNoteId(prev => (!prev && data.length > 0) ? data[0].id : prev);
     });
 
     return () => unsubscribe();
