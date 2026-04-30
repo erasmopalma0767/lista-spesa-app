@@ -4,6 +4,8 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   signOut,
 } from 'firebase/auth';
 import { db } from './firebase';
@@ -36,6 +38,9 @@ function App() {
   // --- AUTENTICAZIONE ---
 
   useEffect(() => {
+    // Gestisce il risultato del redirect (ritorno da Google su mobile)
+    getRedirectResult(auth).catch(console.error);
+
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       setUser(firebaseUser);
     });
@@ -44,11 +49,17 @@ function App() {
 
   async function handleLoginWithGoogle() {
     const provider = new GoogleAuthProvider();
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     try {
-      await signInWithPopup(auth, provider);
+      if (isMobile) {
+        // Redirect funziona sempre su mobile/PWA; popup spesso bloccato da Safari
+        await signInWithRedirect(auth, provider);
+      } else {
+        await signInWithPopup(auth, provider);
+      }
     } catch (error) {
       console.error('Errore login Google', error);
-      alert('Problema durante il login con Google');
+      alert('Errore login: ' + (error.code || error.message));
     }
   }
 
