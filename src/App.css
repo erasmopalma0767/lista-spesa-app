@@ -1283,12 +1283,18 @@ select:focus {
 
 /* Mobile Responsive Overrides */
 @media (max-width: 768px) {
+  /* position:fixed prevents iOS from applying its keyboard-scroll transform */
   .app-root {
-    height: 100vh;
-    height: 100dvh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: auto;
     min-height: unset;
     padding-bottom: 0;
     overflow: hidden;
+    /* JS (visualViewport) will adjust bottom when keyboard opens */
   }
 
   /* Hide Desktop Nav Elements */
@@ -1309,9 +1315,16 @@ select:focus {
     display: none;
   }
 
-  /* Show Mobile Nav */
+  /* Mobile nav: pull out of fixed, back into flex flow */
   .mobile-nav {
     display: flex;
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    flex-shrink: 0;
+    z-index: auto;
   }
 
   .mobile-back-btn {
@@ -1325,8 +1338,8 @@ select:focus {
     flex-direction: column;
     overflow: hidden;
     padding: 0;
-    padding-bottom: 60px; /* account for fixed mobile nav */
     gap: 0;
+    /* no padding-bottom: nav is now in the flex flow */
   }
 
   /* Add-bar: natural flex child at bottom, NOT fixed */
@@ -1335,6 +1348,7 @@ select:focus {
     bottom: auto;
     left: auto;
     right: auto;
+    padding-bottom: 10px; /* no safe-area needed, nav handles it below */
   }
 
   /* Less bottom padding since add-bar is in the flow */

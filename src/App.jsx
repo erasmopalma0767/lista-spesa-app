@@ -350,6 +350,24 @@ function App() {
     setShowMobileDetail(false);
   }
 
+  // Resize fixed app-root when iOS keyboard opens
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!vv) return;
+    const root = document.querySelector('.app-root');
+    function onResize() {
+      if (!root) return;
+      const kbH = Math.max(window.innerHeight - vv.height - vv.offsetTop, 0);
+      root.style.bottom = kbH + 'px';
+    }
+    vv.addEventListener('resize', onResize);
+    vv.addEventListener('scroll', onResize);
+    return () => {
+      vv.removeEventListener('resize', onResize);
+      vv.removeEventListener('scroll', onResize);
+    };
+  }, []);
+
   const isInSection = activeSection !== 'home';
 
   // Determine visibility classes for mobile

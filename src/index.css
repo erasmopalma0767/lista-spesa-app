@@ -97,6 +97,17 @@ body {
   background-color: var(--color-bg-app);
 }
 
+@media (max-width: 768px) {
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+  #root {
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
 button {
   font-family: inherit;
 }
