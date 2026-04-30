@@ -944,6 +944,170 @@
 }
 
 /* =====================
+   CALORIE BADGES
+   ===================== */
+.calorie-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.calorie-badge-lg {
+  font-size: 0.82rem;
+  padding: 3px 10px;
+}
+.cal-low  { background: #f0fdf4; color: #15803d; }
+.cal-med  { background: #fffbeb; color: #b45309; }
+.cal-high { background: #fef2f2; color: #dc2626; }
+@media (prefers-color-scheme: dark) {
+  .cal-low  { background: rgba(16,185,129,.15); color: #34d399; }
+  .cal-med  { background: rgba(245,158,11,.15); color: #fbbf24; }
+  .cal-high { background: rgba(239,68,68,.15);  color: #f87171; }
+}
+
+/* Calorie preview nel form */
+.cal-preview {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+/* Ricetta card badges row */
+.ricetta-card-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+}
+
+/* Sezione label (Preferiti / Leggero) */
+.ricette-section-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  padding: 0 0 10px;
+}
+
+/* Porzioni field (small) */
+.form-field-narrow { max-width: 100px; }
+.form-portions-input { text-align: center; }
+
+/* Match badge (cosa cucino) */
+.match-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: var(--primary-100);
+  color: var(--primary-700);
+  white-space: nowrap;
+}
+@media (prefers-color-scheme: dark) {
+  .match-badge {
+    background: rgba(99,102,241,.2);
+    color: var(--primary-300);
+  }
+}
+
+/* =====================
+   COSA CUCINO SECTION
+   ===================== */
+.cucino-root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-bg-app);
+}
+.cucino-top {
+  flex-shrink: 0;
+  padding: 12px 16px 8px;
+  background: var(--color-bg-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.cucino-subtitle {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+.cucino-clear {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+  flex-shrink: 0;
+}
+.cucino-clear:hover { border-color: var(--color-danger); color: var(--color-danger); }
+
+.cucino-chips-wrap {
+  flex-shrink: 0;
+  max-height: 45vh;
+  overflow-y: auto;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+.cucino-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cucino-chip {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-surface);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.cucino-chip.selected {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+.cucino-chip:active { transform: scale(0.96); }
+
+.cucino-results {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 0 16px;
+}
+.cucino-results-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-success);
+  padding: 10px 16px 4px;
+}
+.cucino-results-label-partial { color: var(--color-warning); }
+
+.cucino-missing {
+  font-size: 0.78rem;
+  color: var(--color-text-tertiary);
+  margin-top: 3px;
+  display: block;
+}
+
+/* =====================
    Layout Structure */
 .app-root {
   display: flex;

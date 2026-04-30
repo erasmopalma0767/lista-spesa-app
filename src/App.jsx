@@ -18,6 +18,7 @@ import {
 import Home from './components/Home';
 import ListeSection from './components/ListeSection';
 import RicetteSection from './components/RicetteSection';
+import CosaCucinoSection from './components/CosaCucinoSection';
 import './App.css';
 
 const STORAGE_KEY_NOTES = 'lista-spesa-notes-v1';
@@ -368,6 +369,8 @@ function App() {
     };
   }, []);
 
+  const [recipeToOpen, setRecipeToOpen] = useState(null);
+
   const isInSection = activeSection !== 'home';
 
   // Determine visibility classes for mobile
@@ -450,29 +453,18 @@ function App() {
             onSelectNote={setSelectedNoteId}
           />
         ) : activeSection === 'recipes' ? (
-          // RICETTE
-          <RicetteSection recipes={recipes} />
-        ) : activeSection === 'cosa-cucino' || activeSection === 'preferiti' || activeSection === 'leggero' || activeSection === 'aggiungi' ? (
-          <div className="placeholder-section">
-            <div className="placeholder-box">
-              <p className="placeholder-emoji">
-                {activeSection === 'cosa-cucino' && '🍳'}
-                {activeSection === 'preferiti' && '⭐'}
-                {activeSection === 'leggero' && '🥗'}
-                {activeSection === 'aggiungi' && '✍️'}
-              </p>
-              <h2>
-                {activeSection === 'cosa-cucino' && 'Cosa cucino?'}
-                {activeSection === 'preferiti' && 'Preferiti'}
-                {activeSection === 'leggero' && 'Leggero'}
-                {activeSection === 'aggiungi' && 'Aggiungi ricetta'}
-              </h2>
-              <p>In arrivo nella prossima versione</p>
-              <button className="btn btn-secondary" onClick={() => handleNavigate('home')}>
-                ← Torna alla home
-              </button>
-            </div>
-          </div>
+          <RicetteSection key={`recipes-${recipeToOpen}`} recipes={recipes} initialRecipeId={recipeToOpen} />
+        ) : activeSection === 'preferiti' ? (
+          <RicetteSection key="preferiti" recipes={recipes} preFilter="favorite" />
+        ) : activeSection === 'leggero' ? (
+          <RicetteSection key="leggero" recipes={recipes} preFilter="leggero" />
+        ) : activeSection === 'aggiungi' ? (
+          <RicetteSection key="aggiungi" recipes={recipes} autoOpenForm />
+        ) : activeSection === 'cosa-cucino' ? (
+          <CosaCucinoSection
+            recipes={recipes}
+            onOpenRecipe={id => { setRecipeToOpen(id); handleNavigate('recipes'); }}
+          />
         ) : null}
       </main>
 
