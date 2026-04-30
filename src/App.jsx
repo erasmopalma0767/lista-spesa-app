@@ -37,8 +37,15 @@ function App() {
 
   // --- AUTENTICAZIONE ---
 
+  const [authError, setAuthError] = useState('');
+
   useEffect(() => {
-    getRedirectResult(auth).catch(console.error);
+    getRedirectResult(auth)
+      .then(result => { if (result?.user) setAuthError(''); })
+      .catch(err => {
+        console.error(err);
+        if (err?.code) setAuthError(err.code);
+      });
 
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       setUser(firebaseUser);
@@ -454,6 +461,11 @@ function App() {
               <p style={{ fontSize: '0.7rem', color: 'var(--color-text-secondary)', marginTop: '1rem', wordBreak: 'break-all' }}>
                 {window.location.hostname}
               </p>
+              {authError && (
+                <p style={{ fontSize: '0.75rem', color: '#ef4444', marginTop: '0.5rem', wordBreak: 'break-all' }}>
+                  Errore: {authError}
+                </p>
+              )}
             </div>
           </div>
         ) : activeSection === 'home' ? (
