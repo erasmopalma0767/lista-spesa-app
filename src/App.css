@@ -702,6 +702,9 @@
   color: var(--color-text-secondary);
   flex-shrink: 0;
 }
+.migrate-banner-import {
+  border-left-color: var(--color-primary);
+}
 
 /* FAB ricette */
 .ricette-fab {

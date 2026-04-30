@@ -1,7 +1,8 @@
 import { useState, useRef, useMemo } from 'react';
 import { db } from '../firebase';
-import { collection, addDoc, doc, updateDoc, deleteDoc } from 'firebase/firestore';
+import { collection, addDoc, doc, updateDoc, deleteDoc, writeBatch } from 'firebase/firestore';
 import { calculateRecipeCalories, calorieBadgeClass, parseIngredientsFromText } from '../utils/calories';
+import seedRecipes from '../data/ricette-seed.json';
 
 const CATEGORIES = ['Antipasti', 'Primi', 'Secondi', 'Dolci', 'Altro'];
 const LEGGERO_THRESHOLD = 400; // kcal/porzione
@@ -200,6 +201,53 @@ export default function RicetteSection({ recipes, preFilter = null, autoOpenForm
     setView('form');
   }
 
+  // Import ricette seed
+  const [importing, setImporting] = useState(false);
+  const [importResult, setImportResult] = useState(null);
+
+  async function importSeedRecipes() {
+    if (!window.confirm(`Importare ${seedRecipes.length} ricette italiane comuni? Le ricette già presenti non vengono toccate.`)) return;
+    setImporting(true);
+    setImportResult(null);
+    try {
+      // Firestore writeBatch max 500 ops
+      const CHUNK = 400;
+      let count = 0;
+      for (let i = 0; i < seedRecipes.length; i += CHUNK) {
+        const batch = writeBatch(db);
+        const chunk = seedRecipes.slice(i, i + CHUNK);
+        for (const recipe of chunk) {
+          const ingredients = (recipe.ingredients || []).map((ing, idx) => ({
+            id: Date.now() + i + idx + Math.random(),
+            nome: ing.nome,
+            quantita: ing.quantita || '',
+          }));
+          const portions = recipe.portions || 4;
+          const calResult = calculateRecipeCalories(ingredients, portions);
+          const ref = doc(collection(db, 'recipes'));
+          batch.set(ref, {
+            title: recipe.title,
+            category: recipe.category || 'Altro',
+            url: recipe.url || '',
+            procedimento: recipe.procedimento || '',
+            ingredients,
+            portions,
+            caloriesPerPortion: calResult?.perPortion ?? null,
+            caloriesTotal: calResult?.total ?? null,
+            favorite: false,
+          });
+          count++;
+        }
+        await batch.commit();
+      }
+      setImportResult(`✅ Importate ${count} ricette!`);
+    } catch (err) {
+      console.error(err);
+      setImportResult('❌ Errore durante l\'importazione.');
+    }
+    setImporting(false);
+  }
+
   // Migrazione batch: aggiorna tutte le ricette senza ingredienti strutturati
   const [migrating, setMigrating] = useState(false);
   const [migrateResult, setMigrateResult] = useState(null);
@@ -266,6 +314,21 @@ export default function RicetteSection({ recipes, preFilter = null, autoOpenForm
             </div>
           )}
         </div>
+
+        {/* Banner import ricette base — solo se < 20 ricette e non ancora importato */}
+        {!preFilter && recipes.length < 20 && !importResult && (
+          <div className="migrate-banner migrate-banner-import">
+            <span>📚 Vuoi partire con ~{seedRecipes.length} ricette italiane comuni?</span>
+            <button className="btn btn-primary btn-sm" onClick={importSeedRecipes} disabled={importing}>
+              {importing ? 'Importazione...' : '📥 Importa ricette'}
+            </button>
+          </div>
+        )}
+        {importResult && !preFilter && (
+          <div className="migrate-banner">
+            <span>{importResult}</span>
+          </div>
+        )}
 
         {/* Banner migrazione batch — solo se ci sono ricette senza ingredienti */}
         {!preFilter && recipes.some(r => !(r.ingredients?.length > 0)) && (
