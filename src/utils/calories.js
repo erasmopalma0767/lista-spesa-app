@@ -70,6 +70,8 @@ const CALORIE_DB = {
   brodo: 15, 'brodo di carne': 15, 'brodo vegetale': 10,
   'salsa di soia': 53, maionese: 680, ketchup: 101,
   olive: 145, 'olive nere': 145, 'olive verdi': 145,
+  capperi: 23, 'capperi sotto sale': 23,
+  peperoncino: 40, 'peperoncino secco': 282,
 
   // Spezie e aromi
   sale: 0, pepe: 251, paprika: 282,
