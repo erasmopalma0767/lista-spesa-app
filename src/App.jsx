@@ -455,14 +455,6 @@ function App() {
               <button type="button" className="btn btn-primary btn-login" onClick={handleLoginWithGoogle}>
                 Entra con Google
               </button>
-              <p style={{ fontSize: '0.7rem', color: 'var(--color-text-secondary)', marginTop: '1rem', wordBreak: 'break-all' }}>
-                {window.location.hostname}
-              </p>
-              {authError && (
-                <p style={{ fontSize: '0.75rem', color: '#ef4444', marginTop: '0.5rem', wordBreak: 'break-all' }}>
-                  Errore: {authError}
-                </p>
-              )}
             </div>
           </div>
         ) : activeSection === 'home' ? (
