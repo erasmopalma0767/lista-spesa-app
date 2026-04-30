@@ -451,6 +451,9 @@ function App() {
               <button type="button" className="btn btn-primary btn-login" onClick={handleLoginWithGoogle}>
                 Entra con Google
               </button>
+              <p style={{ fontSize: '0.7rem', color: 'var(--color-text-secondary)', marginTop: '1rem', wordBreak: 'break-all' }}>
+                {window.location.hostname}
+              </p>
             </div>
           </div>
         ) : activeSection === 'home' ? (
