@@ -1,0 +1,377 @@
+[
+  { "title": "Pasta al pomodoro", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pasta","quantita":"320g"},{"nome":"pomodori pelati","quantita":"400g"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"basilico","quantita":"q.b."},{"nome":"sale","quantita":"q.b."}],
+    "procedimento": "Soffriggere l'aglio nell'olio. Aggiungere i pomodori pelati schiacciati, salare e cuocere 15 min. Lessare la pasta al dente e mantecare con il sugo. Aggiungere basilico fresco." },
+
+  { "title": "Pasta all'amatriciana", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pasta","quantita":"320g"},{"nome":"guanciale","quantita":"150g"},{"nome":"pomodori pelati","quantita":"400g"},{"nome":"pecorino","quantita":"50g"},{"nome":"olio extravergine","quantita":"2 cucchiai"},{"nome":"peperoncino","quantita":"1"},{"nome":"vino bianco","quantita":"50ml"}],
+    "procedimento": "Rosolare il guanciale a dadini. Sfumare con il vino. Aggiungere i pomodori e cuocere 20 min. Lessare la pasta, mantecare con il sugo e il pecorino grattugiato." },
+
+  { "title": "Pasta alla carbonara", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"spaghetti","quantita":"320g"},{"nome":"guanciale","quantita":"150g"},{"nome":"uova","quantita":"4"},{"nome":"pecorino","quantita":"80g"},{"nome":"pepe","quantita":"q.b."}],
+    "procedimento": "Rosolare il guanciale. Sbattere uova con pecorino e pepe. Lessare la pasta, scolare e mantecare fuori dal fuoco con uova e guanciale. Aggiungere acqua di cottura per cremosità." },
+
+  { "title": "Pasta cacio e pepe", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"spaghetti","quantita":"320g"},{"nome":"pecorino","quantita":"120g"},{"nome":"parmigiano","quantita":"40g"},{"nome":"pepe","quantita":"2 cucchiaini"}],
+    "procedimento": "Tostare il pepe in padella. Lessare la pasta. Fuori dal fuoco mantecare con i formaggi grattugiati e acqua di cottura fino a crema liscia." },
+
+  { "title": "Pasta al pesto", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pasta","quantita":"320g"},{"nome":"basilico","quantita":"50g"},{"nome":"pinoli","quantita":"30g"},{"nome":"parmigiano","quantita":"50g"},{"nome":"olio extravergine","quantita":"80ml"},{"nome":"aglio","quantita":"1 spicchio"},{"nome":"sale","quantita":"q.b."}],
+    "procedimento": "Frullare basilico, pinoli, aglio e parmigiano con l'olio fino a ottenere un pesto. Lessare la pasta, aggiungere pesto e un po' d'acqua di cottura." },
+
+  { "title": "Spaghetti alle vongole", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"spaghetti","quantita":"320g"},{"nome":"vongole","quantita":"800g"},{"nome":"aglio","quantita":"3 spicchi"},{"nome":"olio extravergine","quantita":"5 cucchiai"},{"nome":"prezzemolo","quantita":"q.b."},{"nome":"vino bianco","quantita":"100ml"},{"nome":"peperoncino","quantita":"1"}],
+    "procedimento": "Aprire le vongole in padella con aglio e vino bianco. Saltare gli spaghetti al dente con le vongole, olio e prezzemolo." },
+
+  { "title": "Pasta al ragù bolognese", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"tagliatelle","quantita":"320g"},{"nome":"carne macinata","quantita":"300g"},{"nome":"carota","quantita":"80g"},{"nome":"sedano","quantita":"50g"},{"nome":"cipolla","quantita":"80g"},{"nome":"pomodori pelati","quantita":"300g"},{"nome":"latte","quantita":"100ml"},{"nome":"vino rosso","quantita":"100ml"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"parmigiano","quantita":"40g"}],
+    "procedimento": "Soffriggere il trito di carota, sedano e cipolla. Aggiungere la carne e rosolare. Sfumare con il vino, aggiungere pomodori e latte. Cuocere a fuoco lento 2 ore. Servire con tagliatelle e parmigiano." },
+
+  { "title": "Pasta alla puttanesca", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pasta","quantita":"320g"},{"nome":"pomodori pelati","quantita":"400g"},{"nome":"olive nere","quantita":"80g"},{"nome":"capperi","quantita":"30g"},{"nome":"acciughe","quantita":"4"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"peperoncino","quantita":"1"}],
+    "procedimento": "Soffriggere aglio, acciughe e peperoncino. Aggiungere pomodori, olive e capperi. Cuocere 15 min. Mantecare con la pasta." },
+
+  { "title": "Pasta con broccoli", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pasta","quantita":"320g"},{"nome":"broccoli","quantita":"500g"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"acciughe","quantita":"3"},{"nome":"peperoncino","quantita":"1"},{"nome":"parmigiano","quantita":"30g"}],
+    "procedimento": "Lessare i broccoli. Soffriggere aglio e acciughe, aggiungere i broccoli spezzettati. Lessare la pasta, mantecare con broccoli, olio e parmigiano." },
+
+  { "title": "Pasta e fagioli", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pasta","quantita":"200g"},{"nome":"fagioli borlotti","quantita":"400g"},{"nome":"pomodori pelati","quantita":"200g"},{"nome":"rosmarino","quantita":"q.b."},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"sedano","quantita":"50g"},{"nome":"carota","quantita":"50g"},{"nome":"cipolla","quantita":"50g"}],
+    "procedimento": "Soffriggere il trito. Aggiungere fagioli, pomodori e brodo. Cuocere 30 min, frullare metà del composto. Aggiungere la pasta e cuocere." },
+
+  { "title": "Pasta al salmone", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pasta","quantita":"320g"},{"nome":"salmone","quantita":"200g"},{"nome":"panna da cucina","quantita":"150ml"},{"nome":"cipolla","quantita":"60g"},{"nome":"olio extravergine","quantita":"2 cucchiai"},{"nome":"prezzemolo","quantita":"q.b."},{"nome":"vino bianco","quantita":"50ml"}],
+    "procedimento": "Soffriggere la cipolla, aggiungere il salmone a dadini e sfumare. Aggiungere la panna e cuocere 5 min. Mantecare con la pasta." },
+
+  { "title": "Pasta al tonno", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pasta","quantita":"320g"},{"nome":"tonno in scatola","quantita":"200g"},{"nome":"pomodori pelati","quantita":"300g"},{"nome":"capperi","quantita":"20g"},{"nome":"olive","quantita":"50g"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olio extravergine","quantita":"3 cucchiai"}],
+    "procedimento": "Soffriggere l'aglio. Aggiungere pomodori, capperi e olive. Cuocere 10 min. Aggiungere il tonno sgocciolato. Mantecare con la pasta." },
+
+  { "title": "Pasta con zucchine", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pasta","quantita":"320g"},{"nome":"zucchine","quantita":"400g"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"parmigiano","quantita":"50g"},{"nome":"basilico","quantita":"q.b."}],
+    "procedimento": "Tagliare le zucchine a rondelle e rosolarle in olio con aglio. Lessare la pasta e mantecare con zucchine, olio e parmigiano." },
+
+  { "title": "Risotto ai funghi porcini", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"riso","quantita":"320g"},{"nome":"funghi","quantita":"300g"},{"nome":"cipolla","quantita":"80g"},{"nome":"burro","quantita":"40g"},{"nome":"parmigiano","quantita":"60g"},{"nome":"vino bianco","quantita":"100ml"},{"nome":"brodo vegetale","quantita":"800ml"},{"nome":"olio extravergine","quantita":"2 cucchiai"}],
+    "procedimento": "Soffriggere cipolla con olio e burro. Tostare il riso, sfumare con vino. Aggiungere brodo caldo a mestolate. A fine cottura aggiungere funghi e mantecare con parmigiano e burro." },
+
+  { "title": "Risotto alla milanese", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"riso","quantita":"320g"},{"nome":"cipolla","quantita":"60g"},{"nome":"burro","quantita":"60g"},{"nome":"parmigiano","quantita":"80g"},{"nome":"vino bianco","quantita":"100ml"},{"nome":"brodo di carne","quantita":"800ml"},{"nome":"zafferano","quantita":"1g"},{"nome":"olio extravergine","quantita":"2 cucchiai"}],
+    "procedimento": "Soffriggere la cipolla. Tostare il riso, sfumare con vino. Aggiungere brodo con lo zafferano a mestolate. Mantecare con burro e parmigiano." },
+
+  { "title": "Risotto con zucchine e gamberi", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"riso","quantita":"320g"},{"nome":"gamberetti","quantita":"250g"},{"nome":"zucchine","quantita":"200g"},{"nome":"cipolla","quantita":"60g"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"vino bianco","quantita":"80ml"},{"nome":"brodo vegetale","quantita":"800ml"},{"nome":"prezzemolo","quantita":"q.b."}],
+    "procedimento": "Soffriggere cipolla e zucchine. Tostare il riso, sfumare. Aggiungere brodo a mestolate. A fine cottura aggiungere gamberi e prezzemolo." },
+
+  { "title": "Zuppa di lenticchie", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"lenticchie","quantita":"300g"},{"nome":"carota","quantita":"80g"},{"nome":"sedano","quantita":"60g"},{"nome":"cipolla","quantita":"80g"},{"nome":"pomodori pelati","quantita":"200g"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"rosmarino","quantita":"q.b."},{"nome":"brodo vegetale","quantita":"600ml"}],
+    "procedimento": "Soffriggere il trito di verdure. Aggiungere lenticchie, pomodori e brodo. Cuocere 35-40 min fino a che le lenticchie sono morbide." },
+
+  { "title": "Zuppa di ceci", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"ceci","quantita":"400g"},{"nome":"rosmarino","quantita":"q.b."},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"pomodori pelati","quantita":"200g"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"pasta","quantita":"100g"},{"nome":"brodo vegetale","quantita":"500ml"}],
+    "procedimento": "Soffriggere aglio e rosmarino. Aggiungere ceci, pomodori e brodo. Cuocere 20 min, frullare metà. Aggiungere pasta e portare a cottura." },
+
+  { "title": "Minestrone di verdure", "category": "Primi", "portions": 6, "url": "",
+    "ingredients": [{"nome":"patate","quantita":"200g"},{"nome":"carote","quantita":"150g"},{"nome":"zucchine","quantita":"150g"},{"nome":"fagioli","quantita":"200g"},{"nome":"spinaci","quantita":"100g"},{"nome":"cipolla","quantita":"80g"},{"nome":"pomodori","quantita":"200g"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"brodo vegetale","quantita":"1l"},{"nome":"pasta","quantita":"100g"}],
+    "procedimento": "Soffriggere la cipolla. Aggiungere tutte le verdure tagliate a dadini, il brodo e cuocere 30 min. Aggiungere la pasta negli ultimi 10 minuti." },
+
+  { "title": "Vellutata di zucca", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"patate","quantita":"300g"},{"nome":"cipolla","quantita":"80g"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"brodo vegetale","quantita":"600ml"},{"nome":"panna da cucina","quantita":"80ml"},{"nome":"noce moscata","quantita":"q.b."},{"nome":"sale","quantita":"q.b."}],
+    "procedimento": "Soffriggere la cipolla. Aggiungere le verdure a dadini e il brodo. Cuocere 25 min. Frullare fino a crema liscia. Aggiungere panna e noce moscata." },
+
+  { "title": "Vellutata di broccoli", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"broccoli","quantita":"600g"},{"nome":"cipolla","quantita":"80g"},{"nome":"patate","quantita":"150g"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"brodo vegetale","quantita":"500ml"},{"nome":"parmigiano","quantita":"30g"}],
+    "procedimento": "Soffriggere la cipolla. Aggiungere broccoli e patate, coprire con brodo e cuocere 20 min. Frullare e servire con parmigiano." },
+
+  { "title": "Gnocchi al pomodoro", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"gnocchi","quantita":"600g"},{"nome":"pomodori pelati","quantita":"400g"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"basilico","quantita":"q.b."},{"nome":"parmigiano","quantita":"50g"}],
+    "procedimento": "Preparare il sugo di pomodoro con aglio e olio. Lessare gli gnocchi e condire con il sugo e abbondante parmigiano." },
+
+  { "title": "Ribollita toscana", "category": "Primi", "portions": 6, "url": "",
+    "ingredients": [{"nome":"fagioli","quantita":"300g"},{"nome":"cavolo nero","quantita":"200g"},{"nome":"patate","quantita":"150g"},{"nome":"carota","quantita":"80g"},{"nome":"sedano","quantita":"60g"},{"nome":"cipolla","quantita":"80g"},{"nome":"pomodori pelati","quantita":"200g"},{"nome":"olio extravergine","quantita":"5 cucchiai"},{"nome":"pane","quantita":"200g"},{"nome":"brodo vegetale","quantita":"800ml"}],
+    "procedimento": "Soffriggere il trito, aggiungere verdure, fagioli e brodo. Cuocere 40 min. Aggiungere il pane a fette e ribollire." },
+
+  { "title": "Pasta alla norma", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pasta","quantita":"320g"},{"nome":"melanzane","quantita":"400g"},{"nome":"pomodori pelati","quantita":"400g"},{"nome":"ricotta","quantita":"100g"},{"nome":"olio extravergine","quantita":"5 cucchiai"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"basilico","quantita":"q.b."}],
+    "procedimento": "Friggere le melanzane a dadini. Preparare il sugo di pomodoro. Lessare la pasta, condire con sugo, melanzane, ricotta sbriciolata e basilico." },
+
+  { "title": "Pasta fredda estiva", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pasta","quantita":"320g"},{"nome":"pomodorini","quantita":"200g"},{"nome":"mozzarella","quantita":"200g"},{"nome":"olive","quantita":"80g"},{"nome":"basilico","quantita":"q.b."},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"capperi","quantita":"20g"}],
+    "procedimento": "Lessare la pasta e raffreddare. Tagliare mozzarella e pomodorini. Condire con tutti gli ingredienti, olio e basilico." },
+
+  { "title": "Lasagne al ragù", "category": "Primi", "portions": 6, "url": "",
+    "ingredients": [{"nome":"lasagna","quantita":"250g"},{"nome":"carne macinata","quantita":"400g"},{"nome":"pomodori pelati","quantita":"400g"},{"nome":"latte","quantita":"500ml"},{"nome":"farina","quantita":"50g"},{"nome":"burro","quantita":"50g"},{"nome":"parmigiano","quantita":"80g"},{"nome":"cipolla","quantita":"80g"},{"nome":"olio extravergine","quantita":"3 cucchiai"}],
+    "procedimento": "Preparare ragù con carne e pomodori. Preparare besciamella con burro, farina e latte. Alternare lasagne, ragù e besciamella. Coprire con parmigiano e infornare 35 min a 180°." },
+
+  { "title": "Risotto al pomodoro e basilico", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"riso","quantita":"320g"},{"nome":"pomodori pelati","quantita":"300g"},{"nome":"cipolla","quantita":"60g"},{"nome":"burro","quantita":"40g"},{"nome":"parmigiano","quantita":"60g"},{"nome":"basilico","quantita":"q.b."},{"nome":"brodo vegetale","quantita":"700ml"},{"nome":"vino bianco","quantita":"80ml"}],
+    "procedimento": "Soffriggere cipolla con burro. Tostare il riso, sfumare. Aggiungere brodo e pomodori. Mantecare con parmigiano e basilico." },
+
+  { "title": "Pasta e piselli", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pasta","quantita":"280g"},{"nome":"piselli","quantita":"300g"},{"nome":"pancetta","quantita":"80g"},{"nome":"cipolla","quantita":"60g"},{"nome":"olio extravergine","quantita":"2 cucchiai"},{"nome":"brodo vegetale","quantita":"300ml"},{"nome":"parmigiano","quantita":"30g"}],
+    "procedimento": "Soffriggere pancetta e cipolla. Aggiungere i piselli con brodo e cuocere 10 min. Lessare la pasta, scolare e mantecare con piselli e parmigiano." },
+
+  { "title": "Pollo al forno con patate", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pollo","quantita":"1200g"},{"nome":"patate","quantita":"600g"},{"nome":"rosmarino","quantita":"q.b."},{"nome":"aglio","quantita":"4 spicchi"},{"nome":"olio extravergine","quantita":"5 cucchiai"},{"nome":"vino bianco","quantita":"100ml"},{"nome":"sale","quantita":"q.b."}],
+    "procedimento": "Tagliare il pollo in pezzi e marinare con olio, aglio, rosmarino. Mettere in teglia con patate a spicchi e vino. Infornare a 180° per 60 min." },
+
+  { "title": "Pollo alla cacciatora", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pollo","quantita":"1000g"},{"nome":"pomodori pelati","quantita":"400g"},{"nome":"cipolla","quantita":"100g"},{"nome":"carota","quantita":"80g"},{"nome":"sedano","quantita":"60g"},{"nome":"olive","quantita":"80g"},{"nome":"capperi","quantita":"20g"},{"nome":"vino rosso","quantita":"150ml"},{"nome":"olio extravergine","quantita":"4 cucchiai"}],
+    "procedimento": "Rosolare il pollo a pezzi. Soffriggere il trito. Aggiungere vino, pomodori, olive e capperi. Cuocere coperto 40 min." },
+
+  { "title": "Pollo al limone", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"petto di pollo","quantita":"600g"},{"nome":"limone","quantita":"2"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"rosmarino","quantita":"q.b."},{"nome":"vino bianco","quantita":"80ml"}],
+    "procedimento": "Marinare il pollo con succo di limone, aglio e rosmarino. Rosolare in olio, sfumare con vino. Cuocere 20 min con succo di limone e buccia." },
+
+  { "title": "Scaloppine al limone", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"vitello","quantita":"500g"},{"nome":"farina","quantita":"50g"},{"nome":"burro","quantita":"40g"},{"nome":"limone","quantita":"2"},{"nome":"prezzemolo","quantita":"q.b."},{"nome":"brodo di carne","quantita":"80ml"}],
+    "procedimento": "Infarinare le scaloppine. Cuocere nel burro 2 min per lato. Aggiungere succo di limone e brodo, restringere la salsa e servire con prezzemolo." },
+
+  { "title": "Scaloppine ai funghi", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"vitello","quantita":"500g"},{"nome":"funghi","quantita":"300g"},{"nome":"farina","quantita":"40g"},{"nome":"burro","quantita":"40g"},{"nome":"panna da cucina","quantita":"100ml"},{"nome":"vino bianco","quantita":"80ml"},{"nome":"prezzemolo","quantita":"q.b."}],
+    "procedimento": "Infarinare le scaloppine e rosolarle nel burro. Aggiungere funghi e vino. Sfumare, aggiungere panna e cuocere 5 min." },
+
+  { "title": "Polpette al pomodoro", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"carne macinata","quantita":"500g"},{"nome":"parmigiano","quantita":"60g"},{"nome":"uova","quantita":"2"},{"nome":"pangrattato","quantita":"80g"},{"nome":"aglio","quantita":"1 spicchio"},{"nome":"pomodori pelati","quantita":"400g"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"prezzemolo","quantita":"q.b."}],
+    "procedimento": "Mescolare carne, uova, parmigiano, pangrattato e prezzemolo. Formare le polpette. Rosolarle in olio. Aggiungere pomodori e cuocere 20 min." },
+
+  { "title": "Orata al forno", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"orata","quantita":"800g"},{"nome":"patate","quantita":"400g"},{"nome":"pomodorini","quantita":"150g"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"prezzemolo","quantita":"q.b."},{"nome":"vino bianco","quantita":"80ml"}],
+    "procedimento": "Sistemare l'orata in teglia con patate a fette, pomodorini, aglio e vino. Condire con olio. Infornare a 180° per 30-35 min." },
+
+  { "title": "Branzino al cartoccio", "category": "Secondi", "portions": 2, "url": "",
+    "ingredients": [{"nome":"branzino","quantita":"600g"},{"nome":"limone","quantita":"1"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"prezzemolo","quantita":"q.b."},{"nome":"timo","quantita":"q.b."}],
+    "procedimento": "Farcire il pesce con aglio, limone e erbe aromatiche. Avvolgere nel cartoccio con olio. Infornare a 200° per 25 min." },
+
+  { "title": "Salmone al forno al limone", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"salmone","quantita":"700g"},{"nome":"limone","quantita":"2"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"prezzemolo","quantita":"q.b."},{"nome":"sale","quantita":"q.b."}],
+    "procedimento": "Marinare il salmone con limone, aglio e olio. Infornare a 180° per 20 min." },
+
+  { "title": "Merluzzo al pomodoro", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"merluzzo","quantita":"700g"},{"nome":"pomodori pelati","quantita":"400g"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olive","quantita":"50g"},{"nome":"capperi","quantita":"20g"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"prezzemolo","quantita":"q.b."}],
+    "procedimento": "Soffriggere aglio. Aggiungere pomodori, olive e capperi, cuocere 10 min. Adagiare il merluzzo nel sugo e cuocere coperto 15 min." },
+
+  { "title": "Gamberetti aglio e olio", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"gamberi","quantita":"600g"},{"nome":"aglio","quantita":"3 spicchi"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"prezzemolo","quantita":"q.b."},{"nome":"vino bianco","quantita":"80ml"},{"nome":"peperoncino","quantita":"1"},{"nome":"limone","quantita":"1"}],
+    "procedimento": "Soffriggere aglio e peperoncino. Aggiungere i gamberetti, sfumare con vino. Cuocere 5 min. Aggiungere prezzemolo e succo di limone." },
+
+  { "title": "Frittata di verdure", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"uova","quantita":"6"},{"nome":"zucchine","quantita":"200g"},{"nome":"peperoni","quantita":"150g"},{"nome":"cipolla","quantita":"80g"},{"nome":"parmigiano","quantita":"40g"},{"nome":"olio extravergine","quantita":"3 cucchiai"}],
+    "procedimento": "Soffriggere le verdure. Sbattere le uova con parmigiano, aggiungere le verdure. Versare in padella e cuocere a fuoco medio, girare e completare la cottura." },
+
+  { "title": "Frittata di patate e cipolla", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"uova","quantita":"6"},{"nome":"patate","quantita":"300g"},{"nome":"cipolla","quantita":"120g"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"parmigiano","quantita":"30g"},{"nome":"sale","quantita":"q.b."}],
+    "procedimento": "Friggere patate e cipolla a fettine. Sbattere le uova con parmigiano. Unire patate alle uova. Cuocere in padella dai due lati." },
+
+  { "title": "Uova in purgatorio", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"uova","quantita":"8"},{"nome":"pomodori pelati","quantita":"400g"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"peperoncino","quantita":"1"},{"nome":"basilico","quantita":"q.b."}],
+    "procedimento": "Preparare il sugo di pomodoro piccante. Rompere le uova nel sugo bollente. Coprire e cuocere 5-7 min finché l'albume è rappreso." },
+
+  { "title": "Cotoletta alla milanese", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"vitello","quantita":"600g"},{"nome":"uova","quantita":"2"},{"nome":"pangrattato","quantita":"150g"},{"nome":"parmigiano","quantita":"40g"},{"nome":"burro","quantita":"80g"},{"nome":"limone","quantita":"1"}],
+    "procedimento": "Appiattire le fette di vitello. Passare in uovo sbattuto e poi in pangrattato misto a parmigiano. Cuocere nel burro abbondante 3-4 min per lato. Servire con limone." },
+
+  { "title": "Coniglio alla cacciatora", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"coniglio","quantita":"1000g"},{"nome":"pomodori pelati","quantita":"300g"},{"nome":"cipolla","quantita":"100g"},{"nome":"carota","quantita":"80g"},{"nome":"olive","quantita":"80g"},{"nome":"capperi","quantita":"20g"},{"nome":"vino bianco","quantita":"150ml"},{"nome":"rosmarino","quantita":"q.b."},{"nome":"olio extravergine","quantita":"4 cucchiai"}],
+    "procedimento": "Rosolare il coniglio a pezzi. Aggiungere verdure, vino, pomodori, olive e capperi. Cuocere coperto 45 min." },
+
+  { "title": "Petto di pollo alla griglia", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"petto di pollo","quantita":"600g"},{"nome":"limone","quantita":"1"},{"nome":"aglio","quantita":"1 spicchio"},{"nome":"olio extravergine","quantita":"2 cucchiai"},{"nome":"rosmarino","quantita":"q.b."},{"nome":"sale","quantita":"q.b."}],
+    "procedimento": "Marinare il pollo con olio, limone, aglio e rosmarino per 30 min. Cuocere sulla griglia 6-7 min per lato." },
+
+  { "title": "Spezzatino di manzo con patate", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"manzo","quantita":"600g"},{"nome":"patate","quantita":"400g"},{"nome":"cipolla","quantita":"100g"},{"nome":"carota","quantita":"100g"},{"nome":"pomodori pelati","quantita":"300g"},{"nome":"vino rosso","quantita":"150ml"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"rosmarino","quantita":"q.b."},{"nome":"brodo di carne","quantita":"200ml"}],
+    "procedimento": "Rosolare la carne a dadini. Aggiungere verdure, vino e pomodori. Cuocere 60 min. Aggiungere le patate e terminare la cottura 30 min." },
+
+  { "title": "Involtini di carne al sugo", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"vitello","quantita":"500g"},{"nome":"prosciutto crudo","quantita":"80g"},{"nome":"parmigiano","quantita":"40g"},{"nome":"pomodori pelati","quantita":"300g"},{"nome":"vino bianco","quantita":"100ml"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"cipolla","quantita":"60g"}],
+    "procedimento": "Stendere fettine di vitello, farcire con prosciutto e parmigiano, arrotolare. Rosolare, sfumare con vino, aggiungere sugo e cuocere 30 min." },
+
+  { "title": "Saltimbocca alla romana", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"vitello","quantita":"500g"},{"nome":"prosciutto crudo","quantita":"100g"},{"nome":"salvia","quantita":"q.b."},{"nome":"burro","quantita":"50g"},{"nome":"vino bianco","quantita":"80ml"},{"nome":"farina","quantita":"30g"}],
+    "procedimento": "Adagiare una foglia di salvia e prosciutto su ogni fettina. Infarinare. Cuocere nel burro con prosciutto a contatto con la padella. Sfumare con vino." },
+
+  { "title": "Pesce spada alla griglia", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pesce spada","quantita":"600g"},{"nome":"limone","quantita":"2"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"aglio","quantita":"1 spicchio"},{"nome":"prezzemolo","quantita":"q.b."},{"nome":"origano","quantita":"q.b."}],
+    "procedimento": "Marinare il pesce spada con olio, limone e origano. Grigliare 4-5 min per lato. Condire con salmoriglio." },
+
+  { "title": "Polpette di tonno e ricotta", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"tonno in scatola","quantita":"300g"},{"nome":"ricotta","quantita":"150g"},{"nome":"uova","quantita":"2"},{"nome":"parmigiano","quantita":"40g"},{"nome":"pangrattato","quantita":"60g"},{"nome":"prezzemolo","quantita":"q.b."},{"nome":"olio extravergine","quantita":"3 cucchiai"}],
+    "procedimento": "Mescolare tonno sgocciolato, ricotta, uova, parmigiano e prezzemolo. Formare polpette, passare nel pangrattato. Cuocere al forno a 180° per 20 min." },
+
+  { "title": "Trota al cartoccio", "category": "Secondi", "portions": 2, "url": "",
+    "ingredients": [{"nome":"trota","quantita":"500g"},{"nome":"limone","quantita":"1"},{"nome":"olio extravergine","quantita":"2 cucchiai"},{"nome":"prezzemolo","quantita":"q.b."},{"nome":"aglio","quantita":"1 spicchio"},{"nome":"timo","quantita":"q.b."}],
+    "procedimento": "Farcire la trota con limone, aglio e erbe. Avvolgere nel cartoccio con olio. Infornare a 200° per 20 min." },
+
+  { "title": "Frittata di spinaci", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"uova","quantita":"6"},{"nome":"spinaci","quantita":"300g"},{"nome":"parmigiano","quantita":"40g"},{"nome":"olio extravergine","quantita":"2 cucchiai"},{"nome":"aglio","quantita":"1 spicchio"},{"nome":"ricotta","quantita":"80g"}],
+    "procedimento": "Saltare gli spinaci con aglio. Sbattere uova con parmigiano e ricotta. Unire gli spinaci. Cuocere in padella dai due lati." },
+
+  { "title": "Hamburger di ceci", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"ceci","quantita":"400g"},{"nome":"carota","quantita":"80g"},{"nome":"cipolla","quantita":"60g"},{"nome":"pangrattato","quantita":"60g"},{"nome":"uova","quantita":"1"},{"nome":"curcuma","quantita":"1 cucchiaino"},{"nome":"prezzemolo","quantita":"q.b."},{"nome":"olio extravergine","quantita":"2 cucchiai"}],
+    "procedimento": "Frullare grossolanamente i ceci. Aggiungere carota grattugiata, cipolla, pangrattato, uovo e spezie. Formare hamburger. Cuocere in padella 5 min per lato." },
+
+  { "title": "Sgombro al forno", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"sgombro","quantita":"700g"},{"nome":"pomodorini","quantita":"200g"},{"nome":"olive","quantita":"60g"},{"nome":"capperi","quantita":"20g"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"prezzemolo","quantita":"q.b."}],
+    "procedimento": "Sistemare gli sgombri in teglia con pomodorini, olive, capperi e aglio. Condire con olio. Infornare a 180° per 25 min." },
+
+  { "title": "Baccalà alla livornese", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"baccala","quantita":"700g"},{"nome":"pomodori pelati","quantita":"400g"},{"nome":"olive","quantita":"80g"},{"nome":"capperi","quantita":"30g"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"prezzemolo","quantita":"q.b."}],
+    "procedimento": "Infarinare e friggere brevemente il baccalà. Preparare sugo con pomodori, olive e capperi. Cuocere il baccalà nel sugo 20 min." },
+
+  { "title": "Tacchino al forno con erbe", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"tacchino","quantita":"700g"},{"nome":"rosmarino","quantita":"q.b."},{"nome":"salvia","quantita":"q.b."},{"nome":"aglio","quantita":"3 spicchi"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"vino bianco","quantita":"100ml"},{"nome":"limone","quantita":"1"}],
+    "procedimento": "Massaggiare il tacchino con olio, erbe e aglio. Mettere in teglia con vino e limone. Infornare a 180° per 50 min." },
+
+  { "title": "Straccetti di manzo con rucola", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"manzo","quantita":"500g"},{"nome":"rucola","quantita":"100g"},{"nome":"parmigiano","quantita":"50g"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"limone","quantita":"1"},{"nome":"aglio","quantita":"1 spicchio"}],
+    "procedimento": "Tagliare la carne a striscioline. Saltare in padella con aglio 2-3 min. Servire su letto di rucola con parmigiano a scaglie e olio al limone." },
+
+  { "title": "Bruschetta al pomodoro", "category": "Antipasti", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pane","quantita":"200g"},{"nome":"pomodorini","quantita":"300g"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"basilico","quantita":"q.b."},{"nome":"sale","quantita":"q.b."}],
+    "procedimento": "Tostare il pane. Strofinare con aglio. Condire con pomodorini tagliati, olio, basilico e sale." },
+
+  { "title": "Caprese", "category": "Antipasti", "portions": 4, "url": "",
+    "ingredients": [{"nome":"mozzarella","quantita":"400g"},{"nome":"pomodori","quantita":"400g"},{"nome":"basilico","quantita":"q.b."},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"sale","quantita":"q.b."}],
+    "procedimento": "Alternare fette di mozzarella e pomodoro. Condire con olio, basilico e sale." },
+
+  { "title": "Insalata di mare", "category": "Antipasti", "portions": 4, "url": "",
+    "ingredients": [{"nome":"gamberetti","quantita":"200g"},{"nome":"calamari","quantita":"200g"},{"nome":"cozze","quantita":"200g"},{"nome":"vongole","quantita":"200g"},{"nome":"sedano","quantita":"80g"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"limone","quantita":"2"},{"nome":"prezzemolo","quantita":"q.b."}],
+    "procedimento": "Lessare calamari, cuocere cozze e vongole. Sgusciare i gamberi e cuocere. Condire tutto con olio, limone e prezzemolo." },
+
+  { "title": "Verdure grigliate miste", "category": "Antipasti", "portions": 4, "url": "",
+    "ingredients": [{"nome":"zucchine","quantita":"200g"},{"nome":"melanzane","quantita":"200g"},{"nome":"peperoni","quantita":"200g"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"basilico","quantita":"q.b."},{"nome":"aceto balsamico","quantita":"1 cucchiaio"}],
+    "procedimento": "Tagliare le verdure e grigliare. Condire con olio, aglio tritato, basilico e un filo di aceto balsamico." },
+
+  { "title": "Vitello tonnato", "category": "Antipasti", "portions": 6, "url": "",
+    "ingredients": [{"nome":"vitello","quantita":"700g"},{"nome":"tonno in scatola","quantita":"150g"},{"nome":"maionese","quantita":"150g"},{"nome":"capperi","quantita":"30g"},{"nome":"acciughe","quantita":"4"},{"nome":"limone","quantita":"1"},{"nome":"carota","quantita":"80g"},{"nome":"sedano","quantita":"60g"}],
+    "procedimento": "Lessare il vitello con verdure. Frullare tonno, maionese, capperi e acciughe per la salsa. Tagliare la carne a fettine e coprire con la salsa tonnata." },
+
+  { "title": "Prosciutto e melone", "category": "Antipasti", "portions": 4, "url": "",
+    "ingredients": [{"nome":"prosciutto crudo","quantita":"200g"},{"nome":"mela","quantita":"800g"}],
+    "procedimento": "Avvolgere il melone a fette con il prosciutto crudo. Servire fresco." },
+
+  { "title": "Tiramisù classico", "category": "Dolci", "portions": 8, "url": "",
+    "ingredients": [{"nome":"mascarpone","quantita":"500g"},{"nome":"uova","quantita":"4"},{"nome":"zucchero","quantita":"100g"},{"nome":"pane","quantita":"250g"},{"nome":"panna fresca","quantita":"100ml"},{"nome":"cacao","quantita":"30g"}],
+    "procedimento": "Montare tuorli con zucchero. Incorporare mascarpone e panna montata. Inzuppare i savoiardi nel caffè. Alternare strati di crema e savoiardi. Spolverare con cacao. Refrigerare 4 ore." },
+
+  { "title": "Panna cotta alla vaniglia", "category": "Dolci", "portions": 6, "url": "",
+    "ingredients": [{"nome":"panna fresca","quantita":"500ml"},{"nome":"latte","quantita":"100ml"},{"nome":"zucchero","quantita":"80g"},{"nome":"vaniglia","quantita":"1 cucchiaino"},{"nome":"marmellata","quantita":"100g"}],
+    "procedimento": "Scaldare panna, latte, zucchero e vaniglia. Aggiungere gelatina ammollata. Versare negli stampini. Raffreddare 4 ore. Servire con coulis di frutti rossi." },
+
+  { "title": "Crostata di marmellata", "category": "Dolci", "portions": 8, "url": "",
+    "ingredients": [{"nome":"farina","quantita":"300g"},{"nome":"burro","quantita":"150g"},{"nome":"zucchero","quantita":"100g"},{"nome":"uova","quantita":"2"},{"nome":"marmellata","quantita":"300g"},{"nome":"vaniglia","quantita":"1 cucchiaino"}],
+    "procedimento": "Impastare farina, burro, zucchero, uova. Far riposare 30 min. Stendere in teglia, farcire con marmellata. Decorare con strisce di pasta. Infornare 35 min a 170°." },
+
+  { "title": "Torta di mele", "category": "Dolci", "portions": 8, "url": "",
+    "ingredients": [{"nome":"farina","quantita":"250g"},{"nome":"mele","quantita":"600g"},{"nome":"zucchero","quantita":"150g"},{"nome":"uova","quantita":"3"},{"nome":"burro","quantita":"100g"},{"nome":"latte","quantita":"100ml"},{"nome":"lievito","quantita":"16g"},{"nome":"cannella","quantita":"1 cucchiaino"}],
+    "procedimento": "Sbattere uova con zucchero e burro fuso. Aggiungere farina, latte e lievito. Incorporare le mele a dadini e la cannella. Infornare a 180° per 40 min." },
+
+  { "title": "Torta al cioccolato", "category": "Dolci", "portions": 8, "url": "",
+    "ingredients": [{"nome":"farina","quantita":"200g"},{"nome":"cioccolato fondente","quantita":"200g"},{"nome":"burro","quantita":"150g"},{"nome":"zucchero","quantita":"180g"},{"nome":"uova","quantita":"4"},{"nome":"lievito","quantita":"8g"},{"nome":"cacao","quantita":"30g"}],
+    "procedimento": "Sciogliere cioccolato e burro. Sbattere uova con zucchero. Unire il cioccolato, farina, cacao e lievito. Infornare a 175° per 30-35 min." },
+
+  { "title": "Torta alle carote", "category": "Dolci", "portions": 8, "url": "",
+    "ingredients": [{"nome":"carote","quantita":"300g"},{"nome":"farina","quantita":"200g"},{"nome":"zucchero","quantita":"180g"},{"nome":"uova","quantita":"3"},{"nome":"olio di semi","quantita":"120ml"},{"nome":"mandorle","quantita":"80g"},{"nome":"lievito","quantita":"10g"},{"nome":"cannella","quantita":"1 cucchiaino"}],
+    "procedimento": "Grattugiare le carote. Sbattere uova con zucchero e olio. Aggiungere carote, mandorle tritate, farina, lievito e cannella. Infornare a 180° per 40 min." },
+
+  { "title": "Mousse al cioccolato", "category": "Dolci", "portions": 6, "url": "",
+    "ingredients": [{"nome":"cioccolato fondente","quantita":"200g"},{"nome":"uova","quantita":"4"},{"nome":"panna fresca","quantita":"200ml"},{"nome":"zucchero","quantita":"60g"},{"nome":"burro","quantita":"30g"}],
+    "procedimento": "Sciogliere cioccolato e burro. Montare albumi con zucchero. Montare la panna. Incorporare tuorli al cioccolato, poi panna e albumi con movimenti delicati. Refrigerare 2 ore." },
+
+  { "title": "Budino di riso", "category": "Dolci", "portions": 6, "url": "",
+    "ingredients": [{"nome":"riso","quantita":"200g"},{"nome":"latte","quantita":"800ml"},{"nome":"zucchero","quantita":"120g"},{"nome":"uova","quantita":"3"},{"nome":"vaniglia","quantita":"1 cucchiaino"},{"nome":"burro","quantita":"20g"}],
+    "procedimento": "Cuocere il riso nel latte con zucchero e vaniglia. Aggiungere uova sbattute. Versare negli stampini imburrati. Infornare a bagnomaria 180° per 40 min." },
+
+  { "title": "Semifreddo al caffè", "category": "Dolci", "portions": 8, "url": "",
+    "ingredients": [{"nome":"panna fresca","quantita":"400ml"},{"nome":"uova","quantita":"4"},{"nome":"zucchero","quantita":"120g"},{"nome":"mascarpone","quantita":"200g"}],
+    "procedimento": "Montare i tuorli con lo zucchero. Incorporare il mascarpone e la panna montata. Versare in stampo e congelare 4 ore." },
+
+  { "title": "Patate al forno croccanti", "category": "Altro", "portions": 4, "url": "",
+    "ingredients": [{"nome":"patate","quantita":"800g"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"rosmarino","quantita":"q.b."},{"nome":"aglio","quantita":"3 spicchi"},{"nome":"sale","quantita":"q.b."}],
+    "procedimento": "Tagliare le patate a spicchi. Condire con olio, rosmarino e aglio. Infornare a 200° per 40-45 min girando a metà cottura." },
+
+  { "title": "Caponata siciliana", "category": "Altro", "portions": 6, "url": "",
+    "ingredients": [{"nome":"melanzane","quantita":"700g"},{"nome":"sedano","quantita":"150g"},{"nome":"cipolla","quantita":"150g"},{"nome":"pomodori pelati","quantita":"300g"},{"nome":"olive","quantita":"80g"},{"nome":"capperi","quantita":"40g"},{"nome":"aceto balsamico","quantita":"3 cucchiai"},{"nome":"zucchero","quantita":"20g"},{"nome":"olio extravergine","quantita":"6 cucchiai"}],
+    "procedimento": "Friggere le melanzane. In un'altra padella cuocere sedano, cipolla, pomodori, olive e capperi. Aggiungere aceto e zucchero. Unire le melanzane. Far riposare un giorno." },
+
+  { "title": "Peperonata", "category": "Altro", "portions": 4, "url": "",
+    "ingredients": [{"nome":"peperoni","quantita":"600g"},{"nome":"pomodori","quantita":"300g"},{"nome":"cipolla","quantita":"150g"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"basilico","quantita":"q.b."}],
+    "procedimento": "Soffriggere cipolla e aglio. Aggiungere peperoni a strisce e pomodori. Cuocere coperto 30 min a fuoco medio." },
+
+  { "title": "Zucchine trifolate", "category": "Altro", "portions": 4, "url": "",
+    "ingredients": [{"nome":"zucchine","quantita":"600g"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"prezzemolo","quantita":"q.b."},{"nome":"sale","quantita":"q.b."}],
+    "procedimento": "Tagliare le zucchine a rondelle. Soffriggere l'aglio, aggiungere le zucchine. Cuocere 10-12 min a fuoco vivace. Aggiungere prezzemolo." },
+
+  { "title": "Spinaci all'aglio", "category": "Altro", "portions": 4, "url": "",
+    "ingredients": [{"nome":"spinaci","quantita":"800g"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"sale","quantita":"q.b."},{"nome":"limone","quantita":"1"}],
+    "procedimento": "Lessare gli spinaci, strizzare bene. Soffriggere l'aglio, aggiungere gli spinaci e saltare 3 min. Condire con succo di limone." },
+
+  { "title": "Carciofi alla romana", "category": "Altro", "portions": 4, "url": "",
+    "ingredients": [{"nome":"carciofi","quantita":"8"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"prezzemolo","quantita":"q.b."},{"nome":"menta","quantita":"q.b."},{"nome":"olio extravergine","quantita":"5 cucchiai"},{"nome":"limone","quantita":"1"}],
+    "procedimento": "Pulire i carciofi e farcire con trito di aglio, prezzemolo e menta. Cuocere a testa in giù in padella con olio e acqua per 30 min." },
+
+  { "title": "Insalata di riso", "category": "Altro", "portions": 4, "url": "",
+    "ingredients": [{"nome":"riso","quantita":"320g"},{"nome":"tonno in scatola","quantita":"160g"},{"nome":"pomodorini","quantita":"150g"},{"nome":"olive","quantita":"60g"},{"nome":"capperi","quantita":"20g"},{"nome":"cetriolo","quantita":"150g"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"limone","quantita":"1"}],
+    "procedimento": "Lessare il riso e raffreddare. Condire con tutti gli ingredienti, olio e limone." },
+
+  { "title": "Insalata di pomodori e cipolla", "category": "Altro", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pomodori","quantita":"500g"},{"nome":"cipolla","quantita":"150g"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"basilico","quantita":"q.b."},{"nome":"origano","quantita":"q.b."},{"nome":"sale","quantita":"q.b."}],
+    "procedimento": "Tagliare pomodori a fette e cipolla ad anelli. Condire con olio, basilico, origano e sale." },
+
+  { "title": "Fagiolini al pomodoro", "category": "Altro", "portions": 4, "url": "",
+    "ingredients": [{"nome":"fagioli","quantita":"500g"},{"nome":"pomodori pelati","quantita":"300g"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"basilico","quantita":"q.b."}],
+    "procedimento": "Lessare i fagiolini. Soffriggere l'aglio, aggiungere i pomodori. Unire i fagiolini e cuocere 10 min. Aggiungere basilico." },
+
+  { "title": "Polpettone al forno", "category": "Secondi", "portions": 6, "url": "",
+    "ingredients": [{"nome":"carne macinata","quantita":"700g"},{"nome":"uova","quantita":"2"},{"nome":"parmigiano","quantita":"60g"},{"nome":"pangrattato","quantita":"80g"},{"nome":"prosciutto cotto","quantita":"100g"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"prezzemolo","quantita":"q.b."}],
+    "procedimento": "Mescolare carne, uova, parmigiano, pangrattato e prezzemolo. Stendere e farcire con prosciutto. Arrotolare. Infornare a 180° per 45 min." },
+
+  { "title": "Pasta con melanzane e ricotta", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pasta","quantita":"320g"},{"nome":"melanzane","quantita":"400g"},{"nome":"ricotta","quantita":"200g"},{"nome":"pomodorini","quantita":"200g"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"basilico","quantita":"q.b."}],
+    "procedimento": "Friggere le melanzane a dadini. Preparare sughetto con pomodorini. Lessare la pasta, mantecare con melanzane, sugo e ricotta." },
+
+  { "title": "Zuppa di fagioli e orzo", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"fagioli","quantita":"300g"},{"nome":"orzo","quantita":"150g"},{"nome":"carota","quantita":"80g"},{"nome":"sedano","quantita":"60g"},{"nome":"cipolla","quantita":"80g"},{"nome":"rosmarino","quantita":"q.b."},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"brodo vegetale","quantita":"800ml"}],
+    "procedimento": "Soffriggere il trito. Aggiungere fagioli, brodo e rosmarino. Cuocere 20 min. Aggiungere l'orzo e terminare la cottura." },
+
+  { "title": "Melanzane alla parmigiana", "category": "Secondi", "portions": 6, "url": "",
+    "ingredients": [{"nome":"melanzane","quantita":"1000g"},{"nome":"pomodori pelati","quantita":"600g"},{"nome":"mozzarella","quantita":"300g"},{"nome":"parmigiano","quantita":"100g"},{"nome":"olio extravergine","quantita":"6 cucchiai"},{"nome":"basilico","quantita":"q.b."},{"nome":"aglio","quantita":"2 spicchi"}],
+    "procedimento": "Grigliare le melanzane a fette. Preparare il sugo. Alternare strati: melanzane, sugo, mozzarella, parmigiano. Infornare a 180° per 30 min." },
+
+  { "title": "Pasta al forno", "category": "Primi", "portions": 6, "url": "",
+    "ingredients": [{"nome":"pasta","quantita":"400g"},{"nome":"carne macinata","quantita":"300g"},{"nome":"pomodori pelati","quantita":"400g"},{"nome":"mozzarella","quantita":"250g"},{"nome":"parmigiano","quantita":"80g"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"cipolla","quantita":"80g"}],
+    "procedimento": "Preparare ragù. Lessare la pasta al dente. Mescolare con ragù. Versare in teglia alternando con mozzarella e parmigiano. Infornare a 180° per 25 min." },
+
+  { "title": "Pollo arrosto", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pollo","quantita":"1500g"},{"nome":"rosmarino","quantita":"q.b."},{"nome":"salvia","quantita":"q.b."},{"nome":"aglio","quantita":"4 spicchi"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"vino bianco","quantita":"150ml"},{"nome":"sale","quantita":"q.b."}],
+    "procedimento": "Farcire il pollo con aglio ed erbe. Massaggiare con olio. Infornare a 200° per 80 min, bagnando con vino a metà cottura." },
+
+  { "title": "Salsicce con peperoni", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"salsiccia","quantita":"600g"},{"nome":"peperoni","quantita":"400g"},{"nome":"cipolla","quantita":"150g"},{"nome":"pomodori pelati","quantita":"200g"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"vino bianco","quantita":"80ml"}],
+    "procedimento": "Rosolare le salsicce. Aggiungere cipolla e peperoni a strisce. Sfumare con vino. Aggiungere pomodori e cuocere 25 min." },
+
+  { "title": "Pasta con ragù di verdure", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"pasta","quantita":"320g"},{"nome":"carote","quantita":"120g"},{"nome":"zucchine","quantita":"150g"},{"nome":"sedano","quantita":"80g"},{"nome":"cipolla","quantita":"80g"},{"nome":"pomodori pelati","quantita":"300g"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"parmigiano","quantita":"40g"}],
+    "procedimento": "Tritare le verdure finemente e soffriggere. Aggiungere i pomodori e cuocere 20 min. Lessare la pasta e mantecare con il ragù di verdure." },
+
+  { "title": "Risotto con radicchio e speck", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"riso","quantita":"320g"},{"nome":"radicchio","quantita":"200g"},{"nome":"speck","quantita":"100g"},{"nome":"cipolla","quantita":"60g"},{"nome":"burro","quantita":"40g"},{"nome":"parmigiano","quantita":"60g"},{"nome":"vino rosso","quantita":"100ml"},{"nome":"brodo vegetale","quantita":"700ml"}],
+    "procedimento": "Soffriggere cipolla e speck. Tostare il riso, sfumare con vino rosso. Aggiungere brodo a mestolate. Aggiungere il radicchio a metà cottura. Mantecare con burro e parmigiano." },
+
+  { "title": "Polenta con funghi", "category": "Primi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"polenta","quantita":"250g"},{"nome":"funghi","quantita":"400g"},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"parmigiano","quantita":"50g"},{"nome":"burro","quantita":"30g"},{"nome":"prezzemolo","quantita":"q.b."},{"nome":"brodo vegetale","quantita":"1l"}],
+    "procedimento": "Cuocere la polenta nel brodo 40 min mescolando. Saltare i funghi con aglio e prezzemolo. Servire la polenta con i funghi e parmigiano." },
+
+  { "title": "Insalata di farro con verdure", "category": "Altro", "portions": 4, "url": "",
+    "ingredients": [{"nome":"farro","quantita":"300g"},{"nome":"pomodorini","quantita":"150g"},{"nome":"cetriolo","quantita":"150g"},{"nome":"olive","quantita":"60g"},{"nome":"rucola","quantita":"50g"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"limone","quantita":"1"},{"nome":"parmigiano","quantita":"30g"}],
+    "procedimento": "Lessare il farro e raffreddare. Condire con verdure tagliate, olive, rucola, olio e limone." },
+
+  { "title": "Frittata con patate e rosmarino", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"uova","quantita":"6"},{"nome":"patate","quantita":"400g"},{"nome":"rosmarino","quantita":"q.b."},{"nome":"aglio","quantita":"1 spicchio"},{"nome":"olio extravergine","quantita":"3 cucchiai"},{"nome":"parmigiano","quantita":"30g"}],
+    "procedimento": "Cuocere le patate a dadini con rosmarino e aglio. Sbattere le uova con parmigiano. Versare sulle patate e cuocere dai due lati." },
+
+  { "title": "Calamari ripieni al forno", "category": "Secondi", "portions": 4, "url": "",
+    "ingredients": [{"nome":"calamari","quantita":"700g"},{"nome":"pangrattato","quantita":"80g"},{"nome":"prezzemolo","quantita":"q.b."},{"nome":"aglio","quantita":"2 spicchi"},{"nome":"acciughe","quantita":"4"},{"nome":"olio extravergine","quantita":"4 cucchiai"},{"nome":"vino bianco","quantita":"80ml"},{"nome":"pomodorini","quantita":"200g"}],
+    "procedimento": "Preparare il ripieno con pangrattato, prezzemolo, aglio e acciughe. Farcire i calamari. Adagiare in teglia con pomodorini e vino. Infornare a 180° per 25 min." }
+]
