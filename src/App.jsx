@@ -37,53 +37,27 @@ function App() {
 
   // --- AUTENTICAZIONE ---
 
-  const [redirecting, setRedirecting] = useState(false);
-
   useEffect(() => {
-    // Processa il risultato del redirect (quando si torna da Google su iOS PWA)
-    getRedirectResult(auth)
-      .then(result => { if (result) setRedirecting(false); })
-      .catch(() => { setRedirecting(false); });
+    getRedirectResult(auth).catch(console.error);
 
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       setUser(firebaseUser);
-      setRedirecting(false);
     });
     return () => unsubscribe();
   }, []);
 
-  // iOS standalone PWA: window.navigator.standalone === true
-  const isStandalone = typeof window !== 'undefined' && window.navigator.standalone === true;
-
   async function handleLoginWithGoogle() {
     const provider = new GoogleAuthProvider();
-
-    if (isStandalone) {
-      // Su iOS standalone il popup non restituisce il risultato alla PWA;
-      // il redirect porta su Safari, completa l'auth, poi riaprire la PWA
-      // ritrova il token in localStorage (browserLocalPersistence)
-      setRedirecting(true);
-      try {
-        await signInWithRedirect(auth, provider);
-      } catch (err) {
-        setRedirecting(false);
-        alert('Errore login: ' + (err.code || err.message));
-      }
-      return;
-    }
-
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     try {
-      await signInWithPopup(auth, provider);
-    } catch (error) {
-      if (error.code === 'auth/popup-blocked' || error.code === 'auth/cancelled-popup-request') {
-        try {
-          await signInWithRedirect(auth, provider);
-        } catch (err2) {
-          alert('Errore login: ' + (err2.code || err2.message));
-        }
-      } else if (error.code !== 'auth/popup-closed-by-user') {
-        alert('Errore login: ' + (error.code || error.message));
+      if (isMobile) {
+        await signInWithRedirect(auth, provider);
+      } else {
+        await signInWithPopup(auth, provider);
       }
+    } catch (error) {
+      console.error('Errore login Google', error);
+      alert('Errore login: ' + (error.code || error.message));
     }
   }
 
@@ -473,21 +447,10 @@ function App() {
             <div className="login-box">
               <div className="login-logo">🏠</div>
               <h2>Casa • Liste & Ricette</h2>
-              {redirecting ? (
-                <>
-                  <p>Accesso in corso con Google…</p>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)' }}>
-                    Dopo aver confermato su Google, <strong>riapri questa app</strong> dal tasto Home.
-                  </p>
-                </>
-              ) : (
-                <>
-                  <p>Accedi per gestire la spesa e le ricette di famiglia</p>
-                  <button type="button" className="btn btn-primary btn-login" onClick={handleLoginWithGoogle}>
-                    Entra con Google
-                  </button>
-                </>
-              )}
+              <p>Accedi per gestire la spesa e le ricette di famiglia</p>
+              <button type="button" className="btn btn-primary btn-login" onClick={handleLoginWithGoogle}>
+                Entra con Google
+              </button>
             </div>
           </div>
         ) : activeSection === 'home' ? (
