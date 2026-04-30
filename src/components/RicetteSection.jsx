@@ -70,7 +70,15 @@ export default function RicetteSection({ recipes, preFilter = null, autoOpenForm
   const [newIngQta, setNewIngQta] = useState('');
   const ingRef = useRef(null);
 
-  const selectedRecipe = recipes.find(r => r.id === selectedId);
+  // Arricchisce ogni ricetta con calorie calcolate on-the-fly se non già salvate
+  const enrichedRecipes = useMemo(() => recipes.map(r => {
+    if (r.caloriesPerPortion != null) return r;
+    const cal = calculateRecipeCalories(r.ingredients, r.portions || 4);
+    if (!cal) return r;
+    return { ...r, caloriesPerPortion: cal.perPortion, caloriesTotal: cal.total };
+  }), [recipes]);
+
+  const selectedRecipe = enrichedRecipes.find(r => r.id === selectedId);
 
   // Calorie preview nel form (si aggiorna live)
   const previewCal = useMemo(
@@ -80,10 +88,10 @@ export default function RicetteSection({ recipes, preFilter = null, autoOpenForm
 
   // Applica pre-filtro (preferiti / leggero)
   const preFiltered = useMemo(() => {
-    if (preFilter === 'favorite') return recipes.filter(r => r.favorite);
-    if (preFilter === 'leggero') return recipes.filter(r => r.caloriesPerPortion && r.caloriesPerPortion < LEGGERO_THRESHOLD);
-    return recipes;
-  }, [recipes, preFilter]);
+    if (preFilter === 'favorite') return enrichedRecipes.filter(r => r.favorite);
+    if (preFilter === 'leggero') return enrichedRecipes.filter(r => r.caloriesPerPortion && r.caloriesPerPortion < LEGGERO_THRESHOLD);
+    return enrichedRecipes;
+  }, [enrichedRecipes, preFilter]);
 
   // Applica ricerca e categoria
   const filtered = useMemo(() => preFiltered.filter(r => {
