@@ -55,16 +55,13 @@ function App() {
 
   async function handleLoginWithGoogle() {
     const provider = new GoogleAuthProvider();
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     try {
-      if (isMobile) {
-        await signInWithRedirect(auth, provider);
-      } else {
-        await signInWithPopup(auth, provider);
-      }
+      await signInWithPopup(auth, provider);
     } catch (error) {
       console.error('Errore login Google', error);
-      alert('Errore login: ' + (error.code || error.message));
+      if (error.code !== 'auth/popup-closed-by-user') {
+        alert('Errore login: ' + (error.code || error.message));
+      }
     }
   }
 
