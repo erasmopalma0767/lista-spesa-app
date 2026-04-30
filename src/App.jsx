@@ -38,8 +38,7 @@ function App() {
   // --- AUTENTICAZIONE ---
 
   useEffect(() => {
-    // Gestisce il risultato del redirect (ritorno da Google su mobile)
-    getRedirectResult(auth).catch(console.error);
+    getRedirectResult(auth).catch(() => {});
 
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       setUser(firebaseUser);
@@ -49,17 +48,19 @@ function App() {
 
   async function handleLoginWithGoogle() {
     const provider = new GoogleAuthProvider();
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     try {
-      if (isMobile) {
-        // Redirect funziona sempre su mobile/PWA; popup spesso bloccato da Safari
-        await signInWithRedirect(auth, provider);
-      } else {
-        await signInWithPopup(auth, provider);
-      }
+      await signInWithPopup(auth, provider);
     } catch (error) {
-      console.error('Errore login Google', error);
-      alert('Errore login: ' + (error.code || error.message));
+      // Popup bloccato → fallback redirect
+      if (error.code === 'auth/popup-blocked' || error.code === 'auth/cancelled-popup-request') {
+        try {
+          await signInWithRedirect(auth, provider);
+        } catch (err2) {
+          alert('Errore login: ' + (err2.code || err2.message));
+        }
+      } else if (error.code !== 'auth/popup-closed-by-user') {
+        alert('Errore login: ' + (error.code || error.message));
+      }
     }
   }
 
