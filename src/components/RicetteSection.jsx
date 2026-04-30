@@ -204,6 +204,7 @@ export default function RicetteSection({ recipes, preFilter = null, autoOpenForm
   // Import ricette seed
   const [importing, setImporting] = useState(false);
   const [importResult, setImportResult] = useState(null);
+  const [seedImported, setSeedImported] = useState(() => localStorage.getItem('seedImported') === '1');
 
   async function importSeedRecipes() {
     if (!window.confirm(`Importare ${seedRecipes.length} ricette italiane comuni? Le ricette già presenti non vengono toccate.`)) return;
@@ -240,6 +241,8 @@ export default function RicetteSection({ recipes, preFilter = null, autoOpenForm
         }
         await batch.commit();
       }
+      localStorage.setItem('seedImported', '1');
+      setSeedImported(true);
       setImportResult(`✅ Importate ${count} ricette!`);
     } catch (err) {
       console.error(err);
@@ -315,8 +318,8 @@ export default function RicetteSection({ recipes, preFilter = null, autoOpenForm
           )}
         </div>
 
-        {/* Banner import ricette base — solo se < 20 ricette e non ancora importato */}
-        {!preFilter && recipes.length < 20 && !importResult && (
+        {/* Banner import ricette base — finché non importato */}
+        {!preFilter && !seedImported && !importResult && (
           <div className="migrate-banner migrate-banner-import">
             <span>📚 Vuoi partire con ~{seedRecipes.length} ricette italiane comuni?</span>
             <button className="btn btn-primary btn-sm" onClick={importSeedRecipes} disabled={importing}>
