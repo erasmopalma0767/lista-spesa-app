@@ -401,12 +401,17 @@ function App() {
               ←
             </button>
           )}
-          <strong>Casa • Liste & Ricette</strong>
+          <button className="brand-home-btn" onClick={() => handleNavigate('home')}>
+            Casa • Liste & Ricette
+          </button>
         </div>
 
         <div className="nav-tabs">
+          <button type="button" onClick={() => handleNavigate('home')} className={`nav-tab ${activeSection === 'home' ? 'active' : ''}`}>
+            🏠 Home
+          </button>
           <button type="button" onClick={() => handleSwitchSection('lists')} className={`nav-tab ${activeSection === 'lists' ? 'active' : ''}`}>
-            Liste spesa
+            Spesa
           </button>
           <button type="button" onClick={() => handleSwitchSection('recipes')} className={`nav-tab ${activeSection === 'recipes' ? 'active' : ''}`}>
             Ricette
