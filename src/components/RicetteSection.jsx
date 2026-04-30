@@ -1,7 +1,7 @@
 import { useState, useRef, useMemo } from 'react';
 import { db } from '../firebase';
 import { collection, addDoc, doc, updateDoc, deleteDoc } from 'firebase/firestore';
-import { calculateRecipeCalories, calorieBadgeClass } from '../utils/calories';
+import { calculateRecipeCalories, calorieBadgeClass, parseIngredientsFromText } from '../utils/calories';
 
 const CATEGORIES = ['Antipasti', 'Primi', 'Secondi', 'Dolci', 'Altro'];
 const LEGGERO_THRESHOLD = 400; // kcal/porzione
@@ -184,6 +184,52 @@ export default function RicetteSection({ recipes, preFilter = null, autoOpenForm
     } catch (err) { console.error(err); }
   }
 
+  // Analizza il testo del procedimento e pre-compila il form
+  function importFromText() {
+    if (!selectedRecipe) return;
+    const text = getProcedimento(selectedRecipe);
+    const parsed = parseIngredientsFromText(text);
+    setIsEditing(true);
+    setFTitle(selectedRecipe.title || '');
+    setFCategory(selectedRecipe.category || 'Altro');
+    setFUrl(selectedRecipe.url || '');
+    setFProcedimento(text);
+    setFIngredients(parsed);
+    setFPortions(String(selectedRecipe.portions || 4));
+    setNewIngNome(''); setNewIngQta('');
+    setView('form');
+  }
+
+  // Migrazione batch: aggiorna tutte le ricette senza ingredienti strutturati
+  const [migrating, setMigrating] = useState(false);
+  const [migrateResult, setMigrateResult] = useState(null);
+
+  async function migrateAllRecipes() {
+    const toMigrate = recipes.filter(r => !(r.ingredients?.length > 0));
+    if (toMigrate.length === 0) { setMigrateResult('Tutte le ricette hanno già ingredienti strutturati.'); return; }
+    if (!window.confirm(`Analizzo il testo di ${toMigrate.length} ricette e aggiorno automaticamente ingredienti e calorie. Continuo?`)) return;
+    setMigrating(true);
+    let ok = 0, skipped = 0;
+    for (const r of toMigrate) {
+      const text = r.procedimento || r.content || '';
+      const ingredients = parseIngredientsFromText(text);
+      if (ingredients.length === 0) { skipped++; continue; }
+      const portions = r.portions || 4;
+      const calResult = calculateRecipeCalories(ingredients, portions);
+      try {
+        await updateDoc(doc(db, 'recipes', r.id), {
+          ingredients,
+          portions,
+          caloriesPerPortion: calResult?.perPortion ?? null,
+          caloriesTotal: calResult?.total ?? null,
+        });
+        ok++;
+      } catch (e) { console.error(e); skipped++; }
+    }
+    setMigrating(false);
+    setMigrateResult(`✅ Aggiornate ${ok} ricette${skipped > 0 ? `, ${skipped} saltate (testo non riconoscibile)` : ''}.`);
+  }
+
   // ── LIST VIEW ──────────────────────────────────────────────
   if (view === 'list') {
     const sectionLabel = preFilter === 'favorite' ? '★ Preferiti' : preFilter === 'leggero' ? '🥗 Leggero (< 400 kcal)' : null;
@@ -220,6 +266,20 @@ export default function RicetteSection({ recipes, preFilter = null, autoOpenForm
             </div>
           )}
         </div>
+
+        {/* Banner migrazione batch — solo se ci sono ricette senza ingredienti */}
+        {!preFilter && recipes.some(r => !(r.ingredients?.length > 0)) && (
+          <div className="migrate-banner">
+            <span>
+              {migrateResult || `${recipes.filter(r => !(r.ingredients?.length > 0)).length} ricette senza calorie`}
+            </span>
+            {!migrateResult && (
+              <button className="btn btn-primary btn-sm" onClick={migrateAllRecipes} disabled={migrating}>
+                {migrating ? 'Analisi...' : '⚡ Calcola tutto'}
+              </button>
+            )}
+          </div>
+        )}
 
         <div className="ricette-list-wrap">
           {filtered.length === 0 ? (
@@ -274,6 +334,11 @@ export default function RicetteSection({ recipes, preFilter = null, autoOpenForm
             <button className={`btn-star ${selectedRecipe.favorite ? 'active' : ''}`} onClick={toggleFavorite}>
               {selectedRecipe.favorite ? '★' : '☆'}
             </button>
+            {getIngredients(selectedRecipe).length === 0 && getProcedimento(selectedRecipe) && (
+              <button className="btn btn-secondary btn-sm" onClick={importFromText} title="Estrai ingredienti dal testo">
+                📥 Analizza
+              </button>
+            )}
             <button className="btn btn-secondary btn-sm" onClick={openEditForm}>Modifica</button>
             <button className="btn-delete" onClick={handleDelete}>✕</button>
           </div>

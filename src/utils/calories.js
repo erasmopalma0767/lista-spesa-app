@@ -173,6 +173,33 @@ export function calculateRecipeCalories(ingredients, portions = 4) {
   };
 }
 
+// Estrae ingredienti strutturati da testo libero (vecchio formato content/procedimento)
+export function parseIngredientsFromText(text) {
+  if (!text) return [];
+  const VERBS = /\b(fare|metti|mettere|aggiungere|aggiungi|cuocere|cuoci|tagliare|taglia|versare|versa|lasciare|lascia|portare|porta|preparare|prepara|scaldare|scalda|friggere|friggi|bollire|bolli|rosolare|rosola|saltare|salta|unire|unisci|frullare|frulla|scolare|scola|condire|condisci|tritare|trita|schiacciare|schiaccia|mescolate|mescolate|infornare|informa|servire|servi)\b/i;
+
+  const UNITS = /g(?:r(?:amm[io])?)?|kg|m?l|dl|cl|litri?|cucchiai?o?|cucchiaini?|tazz[ae]|spicch[io]|mazzett[io]|pizzic[oi]|foglie?|ramett[io]|fett[ae]|pezz[io]/i;
+  const QTY_RE = new RegExp(
+    `^(.+?)\\s+(\\d+(?:[.,]\\d+)?(?:\\s*(?:${UNITS.source}))?|q\\.?\\s*b\\.?)\\s*$`, 'i'
+  );
+
+  return text
+    .split('\n')
+    .map(l => l.trim())
+    .filter(l => l.length > 0 && l.length < 70)
+    .filter(l => !/^[a-z]/.test(l))          // salta righe che iniziano in minuscolo
+    .filter(l => !VERBS.test(l))              // salta righe con verbi di procedura
+    .map((line, i) => {
+      const m = line.match(QTY_RE);
+      if (!m) return null;
+      const nome = m[1].trim();
+      // Scarta se il nome contiene un verbo (doppia verifica)
+      if (VERBS.test(nome)) return null;
+      return { id: Date.now() + i + Math.random(), nome, quantita: m[2].trim() };
+    })
+    .filter(Boolean);
+}
+
 export function calorieBadgeClass(kcal) {
   if (kcal < 300) return 'cal-low';
   if (kcal < 500) return 'cal-med';
