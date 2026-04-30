@@ -286,10 +286,14 @@ export default function RicetteSection({ recipes, preFilter = null, autoOpenForm
               <span className="ricetta-cat-badge" style={{ background: colors.bg, color: colors.fg }}>
                 {selectedRecipe.category || 'Altro'}
               </span>
-              {selectedRecipe.caloriesPerPortion && (
+              {selectedRecipe.caloriesPerPortion ? (
                 <span className={`calorie-badge calorie-badge-lg ${calorieBadgeClass(selectedRecipe.caloriesPerPortion)}`}>
                   🔥 {selectedRecipe.caloriesPerPortion} kcal/porzione
                   {selectedRecipe.portions > 1 && ` · ${selectedRecipe.portions} porzioni`}
+                </span>
+              ) : (
+                <span className="calorie-badge-hint" onClick={openEditForm}>
+                  + aggiungi quantità per stimare kcal
                 </span>
               )}
               {selectedRecipe.url && (

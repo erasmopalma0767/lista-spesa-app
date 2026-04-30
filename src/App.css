@@ -968,6 +968,21 @@
   .cal-high { background: rgba(239,68,68,.15);  color: #f87171; }
 }
 
+/* Hint calorie mancanti nel dettaglio ricetta */
+.calorie-badge-hint {
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+  border: 1px dashed var(--color-border-hover);
+  border-radius: 20px;
+  padding: 2px 10px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.calorie-badge-hint:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
 /* Calorie preview nel form */
 .cal-preview {
   margin-top: 8px;
