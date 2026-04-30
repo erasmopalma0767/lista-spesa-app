@@ -16,6 +16,10 @@ import {
   doc,
   updateDoc,
   deleteDoc,
+  query,
+  where,
+  getDocs,
+  writeBatch,
 } from 'firebase/firestore';
 import Home from './components/Home';
 import ListeSection from './components/ListeSection';
@@ -37,15 +41,8 @@ function App() {
 
   // --- AUTENTICAZIONE ---
 
-  const [authError, setAuthError] = useState('');
-
   useEffect(() => {
-    getRedirectResult(auth)
-      .then(result => { if (result?.user) setAuthError(''); })
-      .catch(err => {
-        console.error(err);
-        if (err?.code) setAuthError(err.code);
-      });
+    getRedirectResult(auth).catch(console.error);
 
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       setUser(firebaseUser);
@@ -90,7 +87,19 @@ function App() {
     }
 
     const colRef = collection(db, 'notes');
-    const unsubscribe = onSnapshot(colRef, (snapshot) => {
+
+    // Migrazione one-time: assegna le note senza userId all'utente corrente
+    getDocs(colRef).then(async snap => {
+      const toMigrate = snap.docs.filter(d => !d.data().userId);
+      if (toMigrate.length === 0) return;
+      const batch = writeBatch(db);
+      toMigrate.forEach(d => batch.update(d.ref, { userId: user.uid }));
+      await batch.commit();
+    }).catch(console.error);
+
+    // Ascolta solo le note di questo utente
+    const q = query(colRef, where('userId', '==', user.uid));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
       const data = snapshot.docs.map((d) => ({
         id: d.id,
         ...d.data(),
@@ -162,6 +171,7 @@ function App() {
       const newNote = {
         title: trimmed,
         items: [],
+        userId: user.uid,
       };
       const docRef = await addDoc(collection(db, 'notes'), newNote);
       setSelectedNoteId(docRef.id);
