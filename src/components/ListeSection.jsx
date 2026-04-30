@@ -14,30 +14,8 @@ export default function ListeSection({ notes, selectedNoteId, onSelectNote }) {
   const [suggestions, setSuggestions] = useState(null);
   const [selectedSuggestions, setSelectedSuggestions] = useState([]);
   const addItemInputRef = useRef(null);
-  const addBarRef = useRef(null);
 
   const selectedNote = notes.find(n => n.id === selectedNoteId) || notes[0];
-
-  // Sposta la barra aggiungi sopra la tastiera su iOS
-  useEffect(() => {
-    const vv = window.visualViewport;
-    if (!vv) return;
-
-    function adjustBar() {
-      const bar = addBarRef.current;
-      if (!bar) return;
-      const keyboardHeight = window.innerHeight - vv.height - vv.offsetTop;
-      const navHeight = 60;
-      bar.style.bottom = `${Math.max(keyboardHeight, 0) + navHeight}px`;
-    }
-
-    vv.addEventListener('resize', adjustBar);
-    vv.addEventListener('scroll', adjustBar);
-    return () => {
-      vv.removeEventListener('resize', adjustBar);
-      vv.removeEventListener('scroll', adjustBar);
-    };
-  }, []);
   const todoItems = (selectedNote?.items || []).filter(i => !i.done);
   const doneItems = (selectedNote?.items || []).filter(i => i.done);
 
@@ -68,6 +46,7 @@ export default function ListeSection({ notes, selectedNoteId, onSelectNote }) {
       onSelectNote(ref.id);
       setNewNoteTitle('');
       setShowAddNote(false);
+      setTimeout(() => addItemInputRef.current?.focus(), 200);
     } catch (err) { console.error(err); }
   }
 
@@ -260,7 +239,7 @@ export default function ListeSection({ notes, selectedNoteId, onSelectNote }) {
 
       {/* BARRA AGGIUNGI FISSA */}
       {selectedNote && (
-        <form className="add-bar" ref={addBarRef} onSubmit={handleAddItem}>
+        <form className="add-bar" onSubmit={handleAddItem}>
           <input
             ref={addItemInputRef}
             value={newItemName}

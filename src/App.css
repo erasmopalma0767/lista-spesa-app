@@ -1284,10 +1284,11 @@ select:focus {
 /* Mobile Responsive Overrides */
 @media (max-width: 768px) {
   .app-root {
-    height: 100%;
-    min-height: 100vh;
-    padding-bottom: 70px;
-    /* Space for bottom nav */
+    height: 100vh;
+    height: 100dvh;
+    min-height: unset;
+    padding-bottom: 0;
+    overflow: hidden;
   }
 
   /* Hide Desktop Nav Elements */
@@ -1298,14 +1299,14 @@ select:focus {
   .app-header {
     height: 56px;
     padding: 0 1rem;
-    position: sticky;
-    top: 0;
+    flex-shrink: 0;
+    position: relative;
+    top: auto;
     z-index: 50;
   }
 
   .desktop-nav-controls {
     display: none;
-    /* Hide login/logout on top in mobile if we move to profile tab, or keep compact */
   }
 
   /* Show Mobile Nav */
@@ -1318,11 +1319,27 @@ select:focus {
   }
 
   .app-main {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     padding: 0;
-    /* Remove padding */
+    padding-bottom: 60px; /* account for fixed mobile nav */
     gap: 0;
-    display: block;
-    /* Stack content */
+  }
+
+  /* Add-bar: natural flex child at bottom, NOT fixed */
+  .add-bar {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+  }
+
+  /* Less bottom padding since add-bar is in the flow */
+  .items-list-wrap {
+    padding-bottom: 8px;
   }
 
   .sidebar,
@@ -1338,7 +1355,6 @@ select:focus {
   .sidebar,
   .sidebar-recipes {
     min-height: calc(100vh - 56px - 60px);
-    /* Adjust for header/footer */
   }
 
   .content-area {
