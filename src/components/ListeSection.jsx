@@ -7,7 +7,7 @@ import {
 
 const DAYS_THRESHOLD = 5;
 
-export default function ListeSection({ notes, selectedNoteId, onSelectNote }) {
+export default function ListeSection({ notes, selectedNoteId, onSelectNote, userId }) {
   const [newNoteTitle, setNewNoteTitle] = useState('');
   const [showAddNote, setShowAddNote] = useState(false);
   const [newItemName, setNewItemName] = useState('');
@@ -42,7 +42,7 @@ export default function ListeSection({ notes, selectedNoteId, onSelectNote }) {
     const title = newNoteTitle.trim();
     if (!title) return;
     try {
-      const ref = await addDoc(collection(db, 'notes'), { title, items: [] });
+      const ref = await addDoc(collection(db, 'notes'), { title, items: [], userId });
       onSelectNote(ref.id);
       setNewNoteTitle('');
       setShowAddNote(false);

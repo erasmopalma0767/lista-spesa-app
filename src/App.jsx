@@ -479,6 +479,7 @@ function App() {
             notes={notes}
             selectedNoteId={selectedNoteId}
             onSelectNote={setSelectedNoteId}
+            userId={user.uid}
           />
         ) : activeSection === 'recipes' ? (
           <RicetteSection key={`recipes-${recipeToOpen}`} recipes={recipes} initialRecipeId={recipeToOpen} />
